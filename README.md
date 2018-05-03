@@ -1,6 +1,6 @@
 # Learning
 NoteBook
-1、HTML
+#1、HTML
  HTML 超文本标记语言（HyperText Markup Language）是一种用于创建网页的标准标记语言，不是一种编程语言。
  标记语言是一套标记标签 (markup tag)
  HTML 使用标记标签来描述网页
@@ -14,7 +14,7 @@ NoteBook
    <title>HTML测试</title>  元素描述了文档的标题
   </head>
   <body>      元素包含了可见的页面内容
-   <h1>我的第一个标题</h1>    <--元素定义一个大标题-->
+   <h1>我的第一个标题</h1>    元素定义一个大标题
    <p>我的第一个段落</p>   元素定义一个段落
   </body>
  </html>
