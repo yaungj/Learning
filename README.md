@@ -21,4 +21,5 @@ HTML 标签通常是成对出现的:开始标签+结束标签
 HTML 标题（Heading）是通过<h1> - <h6> 标签来定义的.
 HTML 段落是通过标签 <p> 来定义的.
 HTML 链接是通过标签 <a> 来定义的.<a href="http://www.runoob.com/html/html-basic.html">HTML基础</a>
-HTML 图像是通过标签 <img> 来定义的.<img src="http://www.runoob.com/html/html-basic.html/images/logo.png" width="258" height="39" />
+HTML 图像是通过标签 <img> 来定义的.<img src="http://www.runoob.com/images/logo.png" width="258" height="39" />
+HTML 元素可以设置属性，属性和属性值对大小写不敏感
