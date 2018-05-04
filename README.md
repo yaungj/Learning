@@ -1,8 +1,9 @@
 # Learning
 NoteBook
 1、HTML
-  HTML 超文本标记语言（HyperText Markup Language）是一种用于创建网页的标准标记语言，不是一种编程语言。
-  标记语言是一套标记标签 (markup tag)
+====
+>HTML 超文本标记语言（HyperText Markup Language）是一种用于创建网页的标准标记语言，不是一种编程语言。
+>>标记语言是一套标记标签 (markup tag)
   HTML 使用标记标签来描述网页
   HTML 运行在浏览器上，由浏览器来解析
   HTML文档后缀名.html或.htm
@@ -27,6 +28,7 @@ HTML 标签通常是成对出现的:开始标签+结束标签；标签速查：h
   XHTML 以 XML 格式编写的 HTML，是强制性的   声明 ：<!DOCTYPE ....>
 
 2、XML
+===
 XML 指可扩展标记语言（eXtensible Markup Language）。
 XML 和 HTML 为不同的目的而设计：
     XML 被设计用来传输和存储数据，其焦点是数据的内容。
@@ -45,6 +47,7 @@ XSL 指扩展样式表语言（EXtensible Stylesheet Language）, 它是一个 X
 XSLT 指 XSL 转换。在此教程中，你将学习如何使用 XSLT 将 XML 文档转换为其他文档，比如 XHTML
 
 3、JavaScript 
+==
   HTML 定义了网页的内容
   CSS 描述了网页的布局
   JavaScript 网页的行为  --Web的编程语言
@@ -79,6 +82,7 @@ Node.js 就是运行在服务端的 JavaScript。一个基于Chrome JavaScript �
 Node.js是一个事件驱动I/O服务端JavaScript环境
 
 4、JSON
+==
 JSON: JavaScript Object Notation(JavaScript 对象表示法)
 JSON 是存储和交换文本信息的语法。类似 XML。
 JSON 比 XML 更小、更快，更易解析。
@@ -89,7 +93,9 @@ JSON 使用 Javascript语法来描述数据对象，但是 JSON 仍然独立于�
     能够使用内建的 JavaScript eval() 方法进行解析
     使用数组
     不使用保留字
+    
 5、AJAX
+===
 Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
 AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
 AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。
@@ -104,6 +110,7 @@ XMLHttpRequest 是 AJAX 的基础，用于在后台与服务器交换数据。
     发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠
 
 6、Web Service
+===
 通过使用 Web services，您的应用程序可向全世界发布功能或消息。通过 Web services，您的会计部门的 Win 2k 服务器可与 IT 供应商的 UNIX 服务器进行连接。
 Web services 使用 XML 来编解码数据，并使用 SOAP 借由开放的协议来传输数据。
 Web Services 拥有三种基本的元素:SOAP、WSDL 以及 UDDI。
