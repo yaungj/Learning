@@ -40,6 +40,10 @@ DOM 被分为 3 个不同的部分/级别：
 XML DOM 定义访问和操作XML文档的标准方法。
 DOM 将 XML 文档作为一个树形结构，而树叶被定义为节点
 
+XQuery 之于 XML 作用就类似于 SQL 之于数据库的作用。
+XSL 指扩展样式表语言（EXtensible Stylesheet Language）, 它是一个 XML 文档的样式表语言。
+XSLT 指 XSL 转换。在此教程中，你将学习如何使用 XSLT 将 XML 文档转换为其他文档，比如 XHTML
+
 3、JavaScript 
   HTML 定义了网页的内容
   CSS 描述了网页的布局
@@ -56,6 +60,16 @@ JavaScript 可以通过不同的方式来输出数据：
 使用 innerHTML 写入到 HTML 元素。
 使用 console.log() 写入到浏览器的控制台。
 
+jQuery 是一个 JavaScript函数库。jQuery 极大地简化了 JavaScript 编程。
+jQuery 的功能概括
+        1、html 的元素选取
+        2、html的元素操作
+        3、html dom遍历和修改
+        4、js特效和动画效果
+        5、css操作
+        6、html事件操作
+        7、ajax异步请求方式
+
 4、JSON
 JSON: JavaScript Object Notation(JavaScript 对象表示法)
 JSON 是存储和交换文本信息的语法。类似 XML。
@@ -67,10 +81,21 @@ JSON 使用 Javascript语法来描述数据对象，但是 JSON 仍然独立于�
     能够使用内建的 JavaScript eval() 方法进行解析
     使用数组
     不使用保留字
+5、AJAX
+Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
+AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
+AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。
+AJAX 不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。
+AJAX 是一种用于创建快速动态网页的技术
+XMLHttpRequest 是 AJAX 的基础，用于在后台与服务器交换数据。
 
+与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。
+然而，在以下情况中，请使用 POST 请求：
+    无法使用缓存文件（更新服务器上的文件或数据库）
+    向服务器发送大量数据（POST 没有数据量限制）
+    发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠
 
-
-Web Service
+6、Web Service
 通过使用 Web services，您的应用程序可向全世界发布功能或消息。通过 Web services，您的会计部门的 Win 2k 服务器可与 IT 供应商的 UNIX 服务器进行连接。
 Web services 使用 XML 来编解码数据，并使用 SOAP 借由开放的协议来传输数据。
 Web Services 拥有三种基本的元素:SOAP、WSDL 以及 UDDI。
