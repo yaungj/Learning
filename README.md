@@ -1,4 +1,5 @@
 [4、JSON](#4、JSON)
+<a href="#head">`4、JSON`</a>
 
 1、HTML
 ====
@@ -82,7 +83,7 @@ JavaScript 可以通过不同的方式来输出数据：
 ** Node.js是一个事件驱动I/O服务端JavaScript环境
 
 
-4、JSON
+4、JSON<a id="head"/>
 ==
 JSON: JavaScript Object Notation(JavaScript 对象表示法)
 JSON 是存储和交换文本信息的语法。类似 XML。
