@@ -4,9 +4,9 @@
 ====
 >HTML 超文本标记语言（HyperText Markup Language）是一种用于创建网页的标准标记语言，不是一种编程语言。
 >>标记语言是一套标记标签 (markup tag)
-  HTML 使用标记标签来描述网页
-  HTML 运行在浏览器上，由浏览器来解析
-  HTML文档后缀名.html或.htm
+>>HTML 使用标记标签来描述网页
+>>HTML 运行在浏览器上，由浏览器来解析
+>>HTML文档后缀名.html或.htm
 <!DOCTYPE html>  声明为 HTML5 文档,doctype 声明是不区分大小写的
  <html>   HTML页面根元素
   <head>  元素包含了文档的元（meta）数据
@@ -18,7 +18,7 @@
    <p>我的第一个段落</p>   元素定义一个段落
   </body>
  </html>
-HTML 标签通常是成对出现的:开始标签+结束标签；标签速查：http://www.runoob.com/html/html-quicklist.html
+* HTML 标签通常是成对出现的:开始标签+结束标签；标签速查：http://www.runoob.com/html/html-quicklist.html
   HTML 标题（Heading）是通过<h1> - <h6> 标签来定义的.
   HTML 段落是通过标签 <p> 来定义的.
   HTML 链接是通过标签 <a> 来定义的.<a href="http://www.runoob.com/html/html-basic.html">HTML基础</a>
@@ -34,7 +34,7 @@ XML 和 HTML 为不同的目的而设计：
     XML 被设计用来传输和存储数据，其焦点是数据的内容。
     HTML 被设计用来显示数据，其焦点是数据的外观。
 
-文档对象模型（DOM，全称 Document Object Model）是一个使程序和脚本有能力动态地访问和更新文档的内容、结构以及样式的平台和语言中立的接口。"
+* 文档对象模型（DOM，全称 Document Object Model）是一个使程序和脚本有能力动态地访问和更新文档的内容、结构以及样式的平台和语言中立的接口。"
 DOM 被分为 3 个不同的部分/级别：
       核心 DOM - 用于任何结构化文档的标准模型
       XML DOM - 用于 XML 文档的标准模型
@@ -42,9 +42,9 @@ DOM 被分为 3 个不同的部分/级别：
 XML DOM 定义访问和操作XML文档的标准方法。
 DOM 将 XML 文档作为一个树形结构，而树叶被定义为节点
 
-XQuery 之于 XML 作用就类似于 SQL 之于数据库的作用。
-XSL 指扩展样式表语言（EXtensible Stylesheet Language）, 它是一个 XML 文档的样式表语言。
-XSLT 指 XSL 转换。在此教程中，你将学习如何使用 XSLT 将 XML 文档转换为其他文档，比如 XHTML
+* XQuery 之于 XML 作用就类似于 SQL 之于数据库的作用。
+* XSL 指扩展样式表语言（EXtensible Stylesheet Language）, 它是一个 XML 文档的样式表语言。
+** XSLT 指 XSL 转换。在此教程中，你将学习如何使用 XSLT 将 XML 文档转换为其他文档，比如 XHTML
 
 3、JavaScript 
 ==
@@ -116,9 +116,9 @@ XMLHttpRequest 是 AJAX 的基础，用于在后台与服务器交换数据。
 Web services 使用 XML 来编解码数据，并使用 SOAP 借由开放的协议来传输数据。
 Web Services 拥有三种基本的元素:SOAP、WSDL 以及 UDDI。
 基本的 Web services 平台是XML + HTTP。
-WSDL 网络服务描述语言，是基于XML的用来描述Web services以及如何访问它们的一种语言。
+* WSDL 网络服务描述语言，是基于XML的用来描述Web services以及如何访问它们的一种语言。
 WSDL 可描述web service，连同用于web service的消息格式和协议的细节。
-SOAP 简易对象访问协议，是一种使应用程序有能力通过HTTP交换信息的基于 XML 的简易协议。用于应用程序之间的通信。
+* SOAP 简易对象访问协议，是一种使应用程序有能力通过HTTP交换信息的基于 XML 的简易协议。用于应用程序之间的通信。
 SOAP 是一种用于访问web service的协议，基于XML，独立于语言、平台。
-UDDI 指通用的描述、发现以及整合（Universal Description, Discovery and Integration）。
+* UDDI 指通用的描述、发现以及整合（Universal Description, Discovery and Integration）。
 UDDI 是一种目录服务，通过它，企业可注册并搜索 Web services。由 WSDL 描述的网络服务接口目录。经由 SOAP 进行通迅。
