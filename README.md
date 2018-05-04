@@ -69,6 +69,14 @@ jQuery 的功能概括
         5、css操作
         6、html事件操作
         7、ajax异步请求方式
+        
+React 是一个用于构建用户界面的 JAVASCRIPT 库，主要用于构建UI。
+
+Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。
+Vue 只关注视图层， 采用自底向上增量开发的设计
+
+Node.js 就是运行在服务端的 JavaScript。一个基于Chrome JavaScript 运行时建立的一个平台。
+Node.js是一个事件驱动I/O服务端JavaScript环境
 
 4、JSON
 JSON: JavaScript Object Notation(JavaScript 对象表示法)
