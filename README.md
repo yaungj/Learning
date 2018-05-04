@@ -26,6 +26,48 @@ HTML 标签通常是成对出现的:开始标签+结束标签；标签速查：h
   <script> 标签用于定义客户端脚本，比如 JavaScript。
   XHTML 以 XML 格式编写的 HTML，是强制性的   声明 ：<!DOCTYPE ....>
 
+2、XML
+XML 指可扩展标记语言（eXtensible Markup Language）。
+XML 和 HTML 为不同的目的而设计：
+    XML 被设计用来传输和存储数据，其焦点是数据的内容。
+    HTML 被设计用来显示数据，其焦点是数据的外观。
+
+文档对象模型（DOM，全称 Document Object Model）是一个使程序和脚本有能力动态地访问和更新文档的内容、结构以及样式的平台和语言中立的接口。"
+DOM 被分为 3 个不同的部分/级别：
+      核心 DOM - 用于任何结构化文档的标准模型
+      XML DOM - 用于 XML 文档的标准模型
+      HTML DOM - 用于 HTML 文档的标准模型
+XML DOM 定义访问和操作XML文档的标准方法。
+DOM 将 XML 文档作为一个树形结构，而树叶被定义为节点
+
+3、JavaScript 
+  HTML 定义了网页的内容
+  CSS 描述了网页的布局
+  JavaScript 网页的行为  --Web的编程语言
+JavaScript 是一种轻量级的编程语言。
+JavaScript 是可插入 HTML 页面的编程代码。
+JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。
+HTML 中的脚本必须位于 <script> 与 </script> 标签之间。
+脚本可被放置在 HTML 页面的 <body> 和 <head> 部分中，也可以把脚本保存到外部文件中。外部文件通常包含被多个网页使用的代码
+
+JavaScript 可以通过不同的方式来输出数据：
+使用 window.alert() 弹出警告框。
+使用 document.write() 方法将内容写到 HTML 文档中。
+使用 innerHTML 写入到 HTML 元素。
+使用 console.log() 写入到浏览器的控制台。
+
+4、JSON
+JSON: JavaScript Object Notation(JavaScript 对象表示法)
+JSON 是存储和交换文本信息的语法。类似 XML。
+JSON 比 XML 更小、更快，更易解析。
+JSON 使用 Javascript语法来描述数据对象，但是 JSON 仍然独立于语言和平台。JSON 解析器和 JSON 库支持许多不同的编程语言。
+与 XML 不同之处：
+    没有结束标签、更短
+    读写的速度更快
+    能够使用内建的 JavaScript eval() 方法进行解析
+    使用数组
+    不使用保留字
+
 
 
 Web Service
