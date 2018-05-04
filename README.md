@@ -1,5 +1,6 @@
-# Learning
-NoteBook
+
+[4、JSON](#4)
+
 1、HTML
 ====
 >HTML 超文本标记语言（HyperText Markup Language）是一种用于创建网页的标准标记语言，不是一种编程语言。
@@ -81,6 +82,7 @@ Vue 只关注视图层， 采用自底向上增量开发的设计
 Node.js 就是运行在服务端的 JavaScript。一个基于Chrome JavaScript 运行时建立的一个平台。
 Node.js是一个事件驱动I/O服务端JavaScript环境
 
+#4
 4、JSON
 ==
 JSON: JavaScript Object Notation(JavaScript 对象表示法)
