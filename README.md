@@ -1,4 +1,4 @@
-[4、JSON](#4)
+[4、JSON](#4、JSON)
 
 1、HTML
 ====
@@ -63,8 +63,8 @@ JavaScript 可以通过不同的方式来输出数据：
 使用 innerHTML 写入到 HTML 元素。
 使用 console.log() 写入到浏览器的控制台。
 
-jQuery 是一个 JavaScript函数库。jQuery 极大地简化了 JavaScript 编程。
-jQuery 的功能概括
+*jQuery 是一个 JavaScript函数库。jQuery 极大地简化了 JavaScript 编程。
+**jQuery 的功能概括
         1、html 的元素选取
         2、html的元素操作
         3、html dom遍历和修改
@@ -73,16 +73,16 @@ jQuery 的功能概括
         6、html事件操作
         7、ajax异步请求方式
         
-React 是一个用于构建用户界面的 JAVASCRIPT 库，主要用于构建UI。
+*React 是一个用于构建用户界面的 JAVASCRIPT 库，主要用于构建UI。
 
-Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。
-Vue 只关注视图层， 采用自底向上增量开发的设计
+*Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。
+**Vue 只关注视图层， 采用自底向上增量开发的设计
 
-Node.js 就是运行在服务端的 JavaScript。一个基于Chrome JavaScript 运行时建立的一个平台。
-Node.js是一个事件驱动I/O服务端JavaScript环境
+*Node.js 就是运行在服务端的 JavaScript。一个基于Chrome JavaScript 运行时建立的一个平台。
+**Node.js是一个事件驱动I/O服务端JavaScript环境
 
-        #4
-4、JSON
+
+#4、JSON
 ==
 JSON: JavaScript Object Notation(JavaScript 对象表示法)
 JSON 是存储和交换文本信息的语法。类似 XML。
