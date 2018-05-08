@@ -2,7 +2,7 @@
 
 * [1、HTML](#1、HTML)
 * [2、XML](#2、XML)
-* [3、JavaScript](#3、JavaScript)
+* [3.JavaScript](#3.JavaScript)
 * [4、JSON](#4、json)
 * [5、AJAX](#5、AJAX)
 * [6、WebService](#6、WebService)
@@ -54,7 +54,7 @@ DOM 将 XML 文档作为一个树形结构，而树叶被定义为节点
 * XSL 指扩展样式表语言（EXtensible Stylesheet Language）, 它是一个 XML 文档的样式表语言。
 ** XSLT 指 XSL 转换。在此教程中，你将学习如何使用 XSLT 将 XML 文档转换为其他文档，比如 XHTML
 
-# 3、JavaScript 
+# 3.JavaScript 
 ==
   HTML 定义了网页的内容
   CSS 描述了网页的布局
