@@ -9,7 +9,6 @@
 
 
 # HTML
-==
 
 * HTML 超文本标记语言（HyperText Markup Language）是一种用于创建网页的标准标记语言，不是一种编程语言。
   * 标记语言是一套标记标签 (markup tag)
@@ -30,20 +29,20 @@
  </html>
 ```
 * HTML 标签通常是成对出现的:开始标签+结束标签；标签速查：http://www.runoob.com/html/html-quicklist.html
-** HTML 标题（Heading）是通过`<h1> - <h6>` 标签来定义的.
-** HTML 段落是通过标签 `<p>` 来定义的.
-** HTML 链接是通过标签 `<a>` 来定义的.`<a href="http://www.runoob.com/html/html-basic.html">HTML基础</a>`
-** HTML 图像是通过标签 `<img>` 来定义的.`<img src="http://www.runoob.com/images/logo.png" width="258" height="39" />`
-** HTML 元素可以设置属性，属性和属性值对大小写不敏感
-** `<script>` 标签用于定义客户端脚本，比如 JavaScript。
-** XHTML 以 XML 格式编写的 HTML，是强制性的   声明 ：`<!DOCTYPE ....>`
+  * HTML 标题（Heading）是通过`<h1> - <h6>` 标签来定义的.
+  * HTML 段落是通过标签 `<p>` 来定义的.
+  * HTML 链接是通过标签 `<a>` 来定义的.`<a href="http://www.runoob.com/html/html-basic.html">HTML基础</a>`
+  * HTML 图像是通过标签 `<img>` 来定义的.`<img src="http://www.runoob.com/images/logo.png" width="258" height="39" />`
+  * HTML 元素可以设置属性，属性和属性值对大小写不敏感
+  * `<script>` 标签用于定义客户端脚本，比如 JavaScript。
+  * XHTML 以 XML 格式编写的 HTML，是强制性的   声明 ：`<!DOCTYPE ....>`
 
 # XML
 
->XML 指可扩展标记语言（eXtensible Markup Language）。
->XML 和 HTML 为不同的目的而设计：
- >>   XML 被设计用来传输和存储数据，其焦点是数据的内容。
- >>   HTML 被设计用来显示数据，其焦点是数据的外观。
+* XML 指可扩展标记语言（eXtensible Markup Language）。
+* XML 和 HTML 为不同的目的而设计：
+   *   XML 被设计用来传输和存储数据，其焦点是数据的内容。
+   *   HTML 被设计用来显示数据，其焦点是数据的外观。
 
 >文档对象模型（DOM，全称 Document Object Model）是一个使程序和脚本有能力动态地访问和更新文档的内容、结构以及样式的平台和语言中立的接口。"
 >DOM 被分为 3 个不同的部分/级别：
