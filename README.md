@@ -11,11 +11,11 @@
 # HTML
 ==
 
->HTML 超文本标记语言（HyperText Markup Language）是一种用于创建网页的标准标记语言，不是一种编程语言。
->>标记语言是一套标记标签 (markup tag)
->>HTML 使用标记标签来描述网页
->>HTML 运行在浏览器上，由浏览器来解析
->>HTML文档后缀名.html或.htm
+* HTML 超文本标记语言（HyperText Markup Language）是一种用于创建网页的标准标记语言，不是一种编程语言。
+  * 标记语言是一套标记标签 (markup tag)
+  * HTML 使用标记标签来描述网页
+  * HTML 运行在浏览器上，由浏览器来解析
+  * HTML文档后缀名.html或.htm
 ```
 <!DOCTYPE html>  声明为 HTML5 文档,doctype 声明是不区分大小写的
  <html>   HTML页面根元素
@@ -29,14 +29,14 @@
   </body>
  </html>
 ```
->HTML 标签通常是成对出现的:开始标签+结束标签；标签速查：http://www.runoob.com/html/html-quicklist.html
->>HTML 标题（Heading）是通过`<h1> - <h6>` 标签来定义的.
->>HTML 段落是通过标签 `<p>` 来定义的.
->>HTML 链接是通过标签 `<a>` 来定义的.`<a href="http://www.runoob.com/html/html-basic.html">HTML基础</a>`
->>HTML 图像是通过标签 `<img>` 来定义的.`<img src="http://www.runoob.com/images/logo.png" width="258" height="39" />`
->>HTML 元素可以设置属性，属性和属性值对大小写不敏感
->>`<script>` 标签用于定义客户端脚本，比如 JavaScript。
->>XHTML 以 XML 格式编写的 HTML，是强制性的   声明 ：`<!DOCTYPE ....>`
+* HTML 标签通常是成对出现的:开始标签+结束标签；标签速查：http://www.runoob.com/html/html-quicklist.html
+** HTML 标题（Heading）是通过`<h1> - <h6>` 标签来定义的.
+** HTML 段落是通过标签 `<p>` 来定义的.
+** HTML 链接是通过标签 `<a>` 来定义的.`<a href="http://www.runoob.com/html/html-basic.html">HTML基础</a>`
+** HTML 图像是通过标签 `<img>` 来定义的.`<img src="http://www.runoob.com/images/logo.png" width="258" height="39" />`
+** HTML 元素可以设置属性，属性和属性值对大小写不敏感
+** `<script>` 标签用于定义客户端脚本，比如 JavaScript。
+** XHTML 以 XML 格式编写的 HTML，是强制性的   声明 ：`<!DOCTYPE ....>`
 
 # XML
 
