@@ -1,14 +1,14 @@
 # Table of Contents
 
-* [1、HTML](#1、HTML)
-* [2、XML](#2、XML)
-* [3.JavaScript](#3.javaScript)
+* [HTML](#HTML)
+* [XML](#XML)
+* [JavaScript](#javaScript)
 * [4、JSON](#4、json)
 * [5、AJAX](#5、AJAX)
 * [6、WebService](#6、WebService)
 
 
-# 1、HTML
+# HTML
 ====
 >HTML 超文本标记语言（HyperText Markup Language）是一种用于创建网页的标准标记语言，不是一种编程语言。
 >>标记语言是一套标记标签 (markup tag)
@@ -35,7 +35,7 @@
   <script> 标签用于定义客户端脚本，比如 JavaScript。
   XHTML 以 XML 格式编写的 HTML，是强制性的   声明 ：<!DOCTYPE ....>
 
-# 2、XML
+# XML
 
 XML 指可扩展标记语言（eXtensible Markup Language）。
 XML 和 HTML 为不同的目的而设计：
@@ -54,7 +54,7 @@ DOM 将 XML 文档作为一个树形结构，而树叶被定义为节点
 * XSL 指扩展样式表语言（EXtensible Stylesheet Language）, 它是一个 XML 文档的样式表语言。
 ** XSLT 指 XSL 转换。在此教程中，你将学习如何使用 XSLT 将 XML 文档转换为其他文档，比如 XHTML
 
-# 3.JavaScript 
+# JavaScript 
 ==
   HTML 定义了网页的内容
   CSS 描述了网页的布局
