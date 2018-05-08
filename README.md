@@ -136,5 +136,5 @@ UDDI 是一种目录服务，通过它，企业可注册并搜索 Web services�
 
 # Python
 
-经典的Python入门教材：Think Python 
-[PDF格式的电子版](http://www.greenteapress.com/thinkpython2/thinkpython2.pdf) [HTML网页版本](http://www.greenteapress.com/thinkpython2/html/index.html)
+经典的Python入门教材：`Think Python`
+[PDF格式的电子版](http://www.greenteapress.com/thinkpython2/thinkpython2.pdf)  or  [HTML网页版本](http://www.greenteapress.com/thinkpython2/html/index.html)
