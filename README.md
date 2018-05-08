@@ -1,8 +1,8 @@
 # Table of Contents
 
-* [HTML](#HTML)
-* [XML](#XML)
-* [JavaScript](#javaScript)
+* [HTML](#html)
+* [XML](#xml)
+* [JavaScript](#javascript)
 * [4、JSON](#4、json)
 * [5、AJAX](#5、AJAX)
 * [6、WebService](#6、WebService)
