@@ -3,9 +3,9 @@
 * [HTML](#html)
 * [XML](#xml)
 * [JavaScript](#javascript)
-* [4、JSON](#4、json)
-* [5、AJAX](#5、AJAX)
-* [6、WebService](#6、WebService)
+* [JSON](#json)
+* [AJAX](#ajax)
+* [WebService](#webservice)
 
 
 # HTML
@@ -90,7 +90,7 @@ JavaScript 可以通过不同的方式来输出数据：
 ** Node.js是一个事件驱动I/O服务端JavaScript环境
 
 
-# 4、JSON
+# JSON
 ==
 JSON: JavaScript Object Notation(JavaScript 对象表示法)
 JSON 是存储和交换文本信息的语法。类似 XML。
@@ -103,7 +103,7 @@ JSON 使用 Javascript语法来描述数据对象，但是 JSON 仍然独立于�
     使用数组
     不使用保留字
     
-# 5、AJAX
+# AJAX
 ===
 Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
 AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
@@ -118,7 +118,7 @@ XMLHttpRequest 是 AJAX 的基础，用于在后台与服务器交换数据。
     向服务器发送大量数据（POST 没有数据量限制）
     发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠
 
-# 6、WebService
+# WebService
 ===
 通过使用 Web services，您的应用程序可向全世界发布功能或消息。通过 Web services，您的会计部门的 Win 2k 服务器可与 IT 供应商的 UNIX 服务器进行连接。
 Web services 使用 XML 来编解码数据，并使用 SOAP 借由开放的协议来传输数据。
