@@ -35,7 +35,7 @@
   XHTML 以 XML 格式编写的 HTML，是强制性的   声明 ：<!DOCTYPE ....>
 
 # 2、XML
-===
+
 XML 指可扩展标记语言（eXtensible Markup Language）。
 XML 和 HTML 为不同的目的而设计：
     XML 被设计用来传输和存储数据，其焦点是数据的内容。
