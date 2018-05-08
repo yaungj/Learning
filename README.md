@@ -3,7 +3,7 @@
 * [1、HTML](#1、HTML)
 * [2、XML](#2、XML)
 * [3、JavaScript](#3、JavaScript)
-* [JSON](#JSON)
+* [JSON](#json)
 * [5、AJAX](#5、AJAX)
 * [6、WebService](#6、WebService)
 
