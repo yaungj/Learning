@@ -6,6 +6,7 @@
 * [JSON](#json)
 * [AJAX](#ajax)
 * [WebService](#webservice)
+* [Python](#python)
 
 
 # HTML
@@ -132,3 +133,8 @@ WSDL 可描述web service，连同用于web service的消息格式和协议的�
 SOAP 是一种用于访问web service的协议，基于XML，独立于语言、平台。
 * UDDI 指通用的描述、发现以及整合（Universal Description, Discovery and Integration）。
 UDDI 是一种目录服务，通过它，企业可注册并搜索 Web services。由 WSDL 描述的网络服务接口目录。经由 SOAP 进行通迅。
+
+# Python
+
+经典的Python入门教材：Think Python 
+[PDF格式的电子版](http://www.greenteapress.com/thinkpython2/thinkpython2.pdf) [HTML网页版本](http://www.greenteapress.com/thinkpython2/html/index.html)
