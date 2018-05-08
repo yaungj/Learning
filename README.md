@@ -3,7 +3,7 @@
 * [1、HTML](#1、HTML)
 * [2、XML](#2、XML)
 * [3、JavaScript](#3、JavaScript)
-* [JSON](#json)
+* [4、JSON](#4、json)
 * [5、AJAX](#5、AJAX)
 * [6、WebService](#6、WebService)
 
@@ -90,7 +90,7 @@ JavaScript 可以通过不同的方式来输出数据：
 ** Node.js是一个事件驱动I/O服务端JavaScript环境
 
 
-# JSON
+# 4、JSON
 ==
 JSON: JavaScript Object Notation(JavaScript 对象表示法)
 JSON 是存储和交换文本信息的语法。类似 XML。
