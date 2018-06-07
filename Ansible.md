@@ -54,7 +54,7 @@
             ansible REDIS -a "iptables -F"
 
 
-##　**keepalived安装**
+## **keepalived安装**
 ### 1、安装依赖包
 * yum -y install ipvsadm
 * yum -y install popt-devel  #否则会提示configure: error: Popt libraries is required
