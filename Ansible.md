@@ -33,7 +33,6 @@
   * ansible ZOOKEEPER -m copy -a "src=/home/mcbadm/zookeeper-3.4.5.tar.gz dest=/app/zookeeper-3.4.5.tar.gz"
   * ansible ZOOKEEPER -a "chdir=/app tar -zxvf zookeeper-3.4.5.tar.gz"
 
-
     [root@redis01 src]# ./redis-trib.rb create --replicas 1 192.168.133.73:6379 192.168.133.74:6379 192.168.133.75:6379 192.168.133.76:6379 192.168.133.77:6379 192.168.133.78:6379
     >>> Creating cluster
     [ERR] Sorry, can't connect to node 192.168.133.74:6379
