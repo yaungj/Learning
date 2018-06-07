@@ -1,4 +1,3 @@
-:sparkles:
 * 为方便不同项目环境切换，可以在同一个宿主机搭建不同的python环境，清理也方便。
 ## **python虚拟环境搭建：**
 * pip install virtualenv
@@ -12,7 +11,7 @@
 * mkvirtualenv venv　
 * 这样会在WORKON_HOME变量指定的目录下新建名为venv的虚拟环境。
 * 若想指定python版本，可通过"--python"指定python解释器
-* mkvirtualenv --python=/usr/local/python3.5.3/bin/python venv
+* mkvirtualenv --python=/usr/local/bin/python3 vpy36
 ## __激活虚拟环境__
 * $ source venv/bin/activate　　
 ## __查看虚拟环境__
