@@ -1,7 +1,7 @@
-1.install python
-https://www.python.org/downloads/windows/
-2.install pip  可在1中添加安装
->python get-pip.py
+1.install python  
+https://www.python.org/downloads/windows/  
+2.install pip  可在1中添加安装  
+>python get-pip.py  
  
 3.install django
 >pip install django
