@@ -14,7 +14,7 @@
 * mkvirtualenv --python=/usr/local/python3.5.3/bin/python venv
 ## __激活虚拟环境__
 * $ source venv/bin/activate　　
-## __查看当前的虚拟环境目录_
+## __查看虚拟环境__
 * [root@localhost ~]# workon
 * py2
 * py3
@@ -24,5 +24,5 @@
 ## __退出虚拟环境__
 * (py3) [root@localhost ~]# deactivate
 * [root@localhost ~]# 
-##__删除虚拟环境__
+## __删除虚拟环境__
 * rmvirtualenv venv  或者rm -rf删除目录
