@@ -1,5 +1,5 @@
 * 为方便不同项目环境切换，可以在同一个宿主机搭建不同的python环境，清理也方便。
-**python虚拟环境搭建：**
+# **python虚拟环境搭建：**
 * pip install virtualenv
 * pip install virtualenvwrapper
 * pip install virtualenvwrapper-win　　#Windows使用该命令
