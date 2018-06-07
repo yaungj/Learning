@@ -32,7 +32,7 @@
 * 在使用ansible中的时候，默认的模块是-m command，从而模块的参数不需要填写，直接使用即可。
   * ansible ZOOKEEPER -m copy -a "src=/home/mcbadm/zookeeper-3.4.5.tar.gz dest=/app/zookeeper-3.4.5.tar.gz"
   * ansible ZOOKEEPER -a "chdir=/app tar -zxvf zookeeper-3.4.5.tar.gz"
-
+#   
     [root@redis01 src]# ./redis-trib.rb create --replicas 1 192.168.133.73:6379 192.168.133.74:6379 192.168.133.75:6379 192.168.133.76:6379 192.168.133.77:6379 192.168.133.78:6379
     >>> Creating cluster
     [ERR] Sorry, can't connect to node 192.168.133.74:6379
@@ -55,13 +55,13 @@
 
 ## **keepalived安装**
 ### 1、安装依赖包
-* yum -y install ipvsadm
-* yum -y install popt-devel  #否则会提示configure: error: Popt libraries is required
-* yum -y install openssl-devel    #否则会提示!!! OpenSSL is not properly installed on your system. 
+    yum -y install ipvsadm
+    yum -y install popt-devel  #否则会提示configure: error: Popt libraries is required
+    yum -y install openssl-devel #否则会提示!!! OpenSSL is not properly installed on your system. 
 ### 2、编译安装keepalived
-* shell> wget http://www.keepalived.org/software/keepalived-1.2.24.tar.gz
-* shell> tar -zxvf keepalived-1.2.24.tar.gz
-* shell> cd keepalived-1.2.24
-* shell> ./configure --prefix=/usr/local/keepalived
-* shell> make && make instal
+    shell> wget http://www.keepalived.org/software/keepalived-1.2.24.tar.gz
+    shell> tar -zxvf keepalived-1.2.24.tar.gz
+    shell> cd keepalived-1.2.24
+    shell> ./configure --prefix=/usr/local/keepalived
+    shell> make && make instal
 
