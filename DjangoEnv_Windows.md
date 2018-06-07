@@ -29,49 +29,49 @@ Windows 安装mysql
 2、下载完成以后进行解压，解压到你想要的盘中：
 解压后的文件没有data文件夹和my.ini文件，需要自己创建一下
  
-my.ini文件内容：
-# MySQL Server Instance Configuration File 
-[client] 
-# 设置mysql客户端默认字符集 
-default-character-set=utf8 
-[mysqld] 
-#设置3306端口 
-port=3306 
-# 设置mysql的安装目录 
-basedir =”D:\MySQL\mysql-5.7.18-winx64” 
-# 设置mysql数据库的数据的存放目录 
-datadir =”D:\MySQL\mysql-5.7.18-winx64\data” 
-tmpdir =”D:\MySQL\mysql-5.7.18-winx64\data” 
-socket =”D:\MySQL\mysql-5.7.18-winx64\data\mysql.sock” 
-log-error=”D:\MySQL\mysql-5.7.18-winx64\data\mysql_error.log” 
-# 设置mysql服务端默认字符集 
-character-set-server=utf8 
-# 创建新表时将使用的默认存储引擎 
-default-storage-engine=INNODB 
-default-tmp-storage-engine=INNODB 
-#server_id = 2 
-#skip-locking 
-# 允许最大连接数 
-max_connections=1000 
-table_open_cache=256 
-query_cache_size=32M 
-tmp_table_size=32M 
-thread_cache_size=8 
-innodb_data_home_dir=”D:\MySQL\mysql-5.7.18-winx64\data\” 
-innodb_flush_log_at_trx_commit =1 
-innodb_log_buffer_size=128M 
-innodb_buffer_pool_size=128M 
-innodb_log_file_size=10M 
-innodb_thread_concurrency=16 
-innodb-autoextend-increment=1000 
-join_buffer_size = 128M 
-sort_buffer_size = 32M 
-read_rnd_buffer_size = 32M 
-max_allowed_packet = 32M 
-explicit_defaults_for_timestamp=true 
-sql-mode=”STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION” 
-skip-grant-tables 
-#sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+####  my.ini文件内容：
+    # MySQL Server Instance Configuration File 
+    [client] 
+    # 设置mysql客户端默认字符集 
+    default-character-set=utf8 
+    [mysqld] 
+    #设置3306端口 
+    port=3306 
+    # 设置mysql的安装目录 
+    basedir =”D:\MySQL\mysql-5.7.18-winx64” 
+    # 设置mysql数据库的数据的存放目录 
+    datadir =”D:\MySQL\mysql-5.7.18-winx64\data” 
+    tmpdir =”D:\MySQL\mysql-5.7.18-winx64\data” 
+    socket =”D:\MySQL\mysql-5.7.18-winx64\data\mysql.sock” 
+    log-error=”D:\MySQL\mysql-5.7.18-winx64\data\mysql_error.log” 
+    # 设置mysql服务端默认字符集 
+    character-set-server=utf8 
+    # 创建新表时将使用的默认存储引擎 
+    default-storage-engine=INNODB 
+    default-tmp-storage-engine=INNODB 
+    #server_id = 2 
+    #skip-locking 
+    # 允许最大连接数 
+    max_connections=1000 
+    table_open_cache=256 
+    query_cache_size=32M 
+    tmp_table_size=32M 
+    thread_cache_size=8 
+    innodb_data_home_dir=”D:\MySQL\mysql-5.7.18-winx64\data\” 
+    innodb_flush_log_at_trx_commit =1 
+    innodb_log_buffer_size=128M 
+    innodb_buffer_pool_size=128M 
+    innodb_log_file_size=10M 
+    innodb_thread_concurrency=16 
+    innodb-autoextend-increment=1000 
+    join_buffer_size = 128M 
+    sort_buffer_size = 32M 
+    read_rnd_buffer_size = 32M 
+    max_allowed_packet = 32M 
+    explicit_defaults_for_timestamp=true 
+    sql-mode=”STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION” 
+    skip-grant-tables 
+    #sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
  
 3、配置MySQL环境变量
 3.1右击 我的电脑 –> 属性，进入高级系统设置，进行配置MySQL_HOME 
