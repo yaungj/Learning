@@ -207,16 +207,19 @@ HTTP请求格式：
   1）请求方法、URI和HTTP协议版本  ##  POST  /hello.jsp  HTPP/1.1
   2）请求头
   3）请求正文
+  HTML请求参数："?"后的值，多个参数之间用& http://localhost:8080/servlet/Hello?username=Tom&password=1234abcd
+  HTML表单<form>
+  客户端上传文件到服务器
 HTTP响应格式：
   1）HTTP协议版本、状态代码和描述  #  HTTP/1.1  200  OK
   2）响应头
   3）响应正文
 HTTP请求和响应的正文部分数据格式：MIME类型（多用途网络邮件扩展协议）
 异构系统HTTP协议通信方式：
-1）HTTPClient类 - HTTPServer程序
-2）IE浏览器  - HTTPServe程序
-3）HTTPClient类 - Tomcat服务器（简单的HTTP服务器）
-4）IE浏览器  - Tomcat服务器
+  1）HTTPClient类 - HTTPServer程序
+  2）IE浏览器  - HTTPServe程序
+  3）HTTPClient类 - Tomcat服务器（简单的HTTP服务器）
+  4）IE浏览器  - Tomcat服务器
 
 网页中超级链接处理过程：
   1）点击超链接
@@ -228,6 +231,26 @@ HTTP请求和响应的正文部分数据格式：MIME类型（多用途网络邮
   4）解析到<img>标记-根据img标记中的src属性再次向HTPPServer发出请求访问src指定的*.gif文件的HTTP请求
   5）HTTPServer将本地gif文件发给浏览器
   6）浏览器展示gif图片
+Web发展历程
+  1）静态HTML文档
+  2）静态多媒体信息
+  静态概念---文件事先存放在服务器端，发送给浏览器后，浏览器展示给客户
+  3）浏览器端与用户的动态交互
+  JavaScript、VBScript实现功能，浏览器解析、编译和运行服务器端发送过来的脚本语言编写的小程序
+  4）服务器端与用户的动态交互
+  服务器端利用特定程序代码动态生成HTML文档：
+     a、编程语言编写的程序，如CGI程序和java编写的Servlet程序
+     b、嵌入了程序代码的HTML文档，如PHP、JSP（嵌入JAVA程序的HTML文档）、ASP文档
+  5）发布基于Web的应用程序，即Web应用
+  Web应用的设计模式及框架  MVC、Struts等  
+  6）Web服务   Web服务架构采用SOAP（简单访问协议）作为通信协议--SOAP规定使用XML通信
+  Web服务：被客户端远程调用的各种方法
+  客户端请求-服务端调用-Web服务-返回Web服务的响应结果给客户端 
+  客户端协议连接器将SOAP请求包装成HTTP请求，即成为HTTP请求的正文部分
+  服务器端协议解析器解析请求，调用web服务，将web服务返回的原始响应结果包装成SOAP响应结果
+  Web服务器把SOAP响应结果包装成一个HTTP响应结果，成为HTTP响应结果的正文部分
+  --web服务借助web服务器发布到网络上，而无需专门的SOAP服务器
+  7）推出Web2.0-全民共建的Web   Blog、RSS、WIKI、SNS、IM（如MSN\QQ等）
 
 # Python
 
