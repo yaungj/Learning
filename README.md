@@ -38,6 +38,42 @@
   * `<script>` 标签用于定义客户端脚本，比如 JavaScript。
   * XHTML 以 XML 格式编写的 HTML，是强制性的   声明 ：`<!DOCTYPE ....>`
 
+HTML协议
+网络上传输超级文本（HTML文档）的协议，规定了Web的基本运作过程，以及浏览器和Web服务器之间的通信细节。
+位于分层网络体系结构中的应用层，建立在TCP/IP协议的基础上。使用可靠的TCP连接，默认端口80.
+client与server一次信息交换的过程：
+1）client与server建立ftp连接
+2）客户端发出http请求
+3）server发回相应的HTTP响应
+4）client与server的ftp连接断开
+HTTP请求格式：
+  1）请求方法、URI和HTTP协议版本  ##  POST  /hello.jsp  HTPP/1.1
+  2）请求头
+  3）请求正文
+HTTP响应格式：
+  1）HTTP协议版本、状态代码和描述  #  HTTP/1.1  200  OK
+  2）响应头
+  3）响应正文
+HTTP请求和响应的正文部分数据格式：MIME类型（多用途网络邮件扩展协议）
+异构系统HTTP协议通信方式：
+1）HTTPClient类 - HTTPServer程序
+2）IE浏览器  - HTTPServe程序
+3）HTTPClient类 - Tomcat服务器（简单的HTTP服务器）
+4）IE浏览器  - Tomcat服务器
+
+网页中超级链接处理过程：
+  1）点击超链接
+  2）浏览器再次与HTTPServer建立TCP连接，发出访问超级链接文件的HTTP请求-服务器...
+网页中图片的处理过程：
+  1）点击图片超链接
+  2）浏览器再次与HTTPServer建立TCP连接，发出访问超级链接文件的HTTP请求
+  3）浏览器接收到该文件后，解析html文件；
+  4）解析到<img>标记-根据img标记中的src属性再次向HTPPServer发出请求访问src指定的*.gif文件的HTTP请求
+  5）HTTPServer将本地gif文件发给浏览器
+  6）浏览器展示gif图片
+
+
+
 # XML
 
 * XML 指可扩展标记语言（eXtensible Markup Language）。
@@ -133,6 +169,9 @@ WSDL 可描述web service，连同用于web service的消息格式和协议的�
 SOAP 是一种用于访问web service的协议，基于XML，独立于语言、平台。
 * UDDI 指通用的描述、发现以及整合（Universal Description, Discovery and Integration）。
 UDDI 是一种目录服务，通过它，企业可注册并搜索 Web services。由 WSDL 描述的网络服务接口目录。经由 SOAP 进行通迅。
+
+# Java
+
 
 # Python
 
