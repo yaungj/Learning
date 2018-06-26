@@ -1,5 +1,6 @@
 # Table of Contents
 
+* [Web发展历程](#Web发展历程)
 * [HTML](#html)
 * [XML](#xml)
 * [JavaScript](#javascript)
@@ -8,6 +9,26 @@
 * [WebService](#webservice)
 * [Python](#python)
 
+# Web发展历程
+  1）静态HTML文档
+  2）静态多媒体信息
+  静态概念---文件事先存放在服务器端，发送给浏览器后，浏览器展示给客户
+  3）浏览器端与用户的动态交互
+  JavaScript、VBScript实现功能，浏览器解析、编译和运行服务器端发送过来的脚本语言编写的小程序
+  4）服务器端与用户的动态交互
+  服务器端利用特定程序代码动态生成HTML文档：
+     a、编程语言编写的程序，如CGI程序和java编写的Servlet程序
+     b、嵌入了程序代码的HTML文档，如PHP、JSP（嵌入JAVA程序的HTML文档）、ASP文档
+  5）发布基于Web的应用程序，即Web应用
+  Web应用的设计模式及框架  MVC、Struts等  
+  6）Web服务   Web服务架构采用SOAP（简单访问协议）作为通信协议--SOAP规定使用XML通信
+  Web服务：被客户端远程调用的各种方法
+  客户端请求-服务端调用-Web服务-返回Web服务的响应结果给客户端 
+  客户端协议连接器将SOAP请求包装成HTTP请求，即成为HTTP请求的正文部分
+  服务器端协议解析器解析请求，调用web服务，将web服务返回的原始响应结果包装成SOAP响应结果
+  Web服务器把SOAP响应结果包装成一个HTTP响应结果，成为HTTP响应结果的正文部分
+  --web服务借助web服务器发布到网络上，而无需专门的SOAP服务器
+  7）推出Web2.0-全民共建的Web   Blog、RSS、WIKI、SNS、IM（如MSN\QQ等）
 
 # HTML
 
@@ -74,27 +95,6 @@ HTTP请求和响应的正文部分数据格式：MIME类型（多用途网络邮
   4）解析到<img>标记-根据img标记中的src属性再次向HTPPServer发出请求访问src指定的*.gif文件的HTTP请求
   5）HTTPServer将本地gif文件发给浏览器
   6）浏览器展示gif图片
-
-Web发展历程
-  1）静态HTML文档
-  2）静态多媒体信息
-  静态概念---文件事先存放在服务器端，发送给浏览器后，浏览器展示给客户
-  3）浏览器端与用户的动态交互
-  JavaScript、VBScript实现功能，浏览器解析、编译和运行服务器端发送过来的脚本语言编写的小程序
-  4）服务器端与用户的动态交互
-  服务器端利用特定程序代码动态生成HTML文档：
-     a、编程语言编写的程序，如CGI程序和java编写的Servlet程序
-     b、嵌入了程序代码的HTML文档，如PHP、JSP（嵌入JAVA程序的HTML文档）、ASP文档
-  5）发布基于Web的应用程序，即Web应用
-  Web应用的设计模式及框架  MVC、Struts等  
-  6）Web服务   Web服务架构采用SOAP（简单访问协议）作为通信协议--SOAP规定使用XML通信
-  Web服务：被客户端远程调用的各种方法
-  客户端请求-服务端调用-Web服务-返回Web服务的响应结果给客户端 
-  客户端协议连接器将SOAP请求包装成HTTP请求，即成为HTTP请求的正文部分
-  服务器端协议解析器解析请求，调用web服务，将web服务返回的原始响应结果包装成SOAP响应结果
-  Web服务器把SOAP响应结果包装成一个HTTP响应结果，成为HTTP响应结果的正文部分
-  --web服务借助web服务器发布到网络上，而无需专门的SOAP服务器
-  7）推出Web2.0-全民共建的Web   Blog、RSS、WIKI、SNS、IM（如MSN\QQ等）
 
 
 
@@ -231,6 +231,7 @@ HTTP请求和响应的正文部分数据格式：MIME类型（多用途网络邮
   4）解析到<img>标记-根据img标记中的src属性再次向HTPPServer发出请求访问src指定的*.gif文件的HTTP请求
   5）HTTPServer将本地gif文件发给浏览器
   6）浏览器展示gif图片
+  
 Web发展历程
   1）静态HTML文档
   2）静态多媒体信息
