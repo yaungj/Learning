@@ -96,30 +96,48 @@
   * 5）HTTPServer将本地gif文件发给浏览器
   * 6）浏览器展示gif图片
 
+### HTTP会话
+web服务器跟踪客户的状态的一种方法，多个客户访问同一个网页，如果分辨不同的客户
+会话是指单个用户与单个web应用的一连串交互过程，一次会话中客户可能多次请求一个web应用的同一个网页，也可能访问一个web应用的多个网页。
+Servlet规范制定了基于Java的会话的具体运作机制：会话开始时，servlet容器将创建一个HttpSession对象，用于存放客户状态信息，每一个Session对象有一个唯一标示符SessionID。客户端会把SessionID作为Cookie保存，供下次客户端访问请求时服务器端的servlet容器核查比对，如查不到则重新创建一个。
+##### HttpSession生命周期及会话范围
+一次会话范围即浏览器端与一个web应用进行一次会话的过程。
+* 创建HttpSession的场景：
+  * 1）浏览器第一次访问web应用时；
+  * 2）会话被销毁，浏览器再次访问web应用时。客户端SessionID还在，但是服务端servlet容器的HttpSession对象已不存在，无法找到该SessionID对应的HttpSession对象，进而重新创建对象，开始新的会话。
+* HttpSession对象结束生命周期的场景：
+  * 1）浏览器进程终止；
+  * 2）服务端执行HttpSession对象的invalidate()方法；
+  * 3）会话过期（一段时间不交互，servlet容器自动销毁会话--tomcat默认interval为1800s）  tomcat中不会被销毁，而是持久化到永久性存储设备中，下次web应用重启后，tomcat会重新加载这些会话。   运行时状态+持久化状态
+
+* 会话的持久化好处：
+  * 1）节约内存
+  * 2）确保web应用重启后恢复重启前的会话 --故障恢复
+
 # Tomcat
 Servlet接口：Web服务器和Web应用（Servlet实现类）之间的接口
 tomcat作为运行servlet的容器，基本功能：负责接收和解析来自客户的请求，同时把客户的请求传送给响应的Servlet，并把Servlet的响应结果返回给客户。
 客户 ---  Web服务器    --- Web应用
 客户 ---  Servlet容器  --- Servlet对象
-## tomcat工作模式：
+### tomcat工作模式：
 1）独立的Servlet容器  tomcat运行在JVM中
 2）其他服务器进程内的Servlet容器    JNI（Java本地调用接口）通信机制
 3）其他服务器进程外的Servlet容器    IPC（进程间通信）通信机制
 安装tomcat：安装JDK+安装tomcat + 设置JAVA_HOME（jdk安装路径）\CATALINA_HOME（tomcat安装目录）
-## tomcat组成：
+### tomcat组成：
 /bin  启动和关闭tomcat的脚本
 /conf tomcat服务器的各种配置文件
 /lib  存放tomcat服务器和web应用都可访问的jar文件，web应用的lib子目录存放的jar文件只能被当前web应用访问
 /webapps  web应用文件
 /work  存放运行时工作文件
 /logs  日志目录
-## tomcat中发布JavaWeb应用：jar为JDK的命令
+### tomcat中发布JavaWeb应用：jar为JDK的命令
   拷贝war文件到webapps目录下即可，启动tomcat服务器时会把webapps目录下的war文件自动展开为开放式的目录结构。
   jar cvf C:\workspace\helloapp.war  web应用的打包文件war文件
   jar xvf C:\workspace\helloapp.war  展开war文件
 web组件URL http://localhost:8080/helloapp/hello.asp
   $CATALINA_HOME/webapps/helloapp
-## 配置tomcat虚拟主机：
+### 配置tomcat虚拟主机：
 server.xml中的Engine元素下的Host元素值，可以多个虚拟主机名对应同一个主机。
 虚拟主机别名设置：
   http://www.mycompany.com:8080/helloapp/hello.asp
@@ -127,22 +145,76 @@ server.xml中的Engine元素下的Host元素值，可以多个虚拟主机名对
   http://mycompany:8080/helloapp/hello.asp
 tomcat的Context元素，代表了运行在虚拟主机Host上的单个web应用。
 
-## HTTP会话
-web服务器跟踪客户的状态的一种方法，多个客户访问同一个网页，如果分辨不同的客户
-会话是指单个用户与单个web应用的一连串交互过程，一次会话中客户可能多次请求一个web应用的同一个网页，也可能访问一个web应用的多个网页。
-Servlet规范制定了基于Java的会话的具体运作机制：会话开始时，servlet容器将创建一个HttpSession对象，用于存放客户状态信息，每一个Session对象有一个唯一标示符SessionID。客户端会把SessionID作为Cookie保存，供下次客户端访问请求时服务器端的servlet容器核查比对，如查不到则重新创建一个。
-### HttpSession生命周期及会话范围
-一次会话范围即浏览器端与一个web应用进行一次会话的过程。
-创建HttpSession的场景：
-1）浏览器第一次访问web应用时；
-2）会话被销毁，浏览器再次访问web应用时。客户端SessionID还在，但是服务端servlet容器的HttpSession对象已不存在，无法找到该SessionID对应的HttpSession对象，进而重新创建对象，开始新的会话。
-HttpSession对象结束生命周期的场景：
-1）浏览器进程终止；
-2）服务端执行HttpSession对象的invalidate()方法；
-3）会话过期（一段时间不交互，servlet容器自动销毁会话--tomcat默认interval为1800s）  tomcat中不会被销毁，而是持久化到永久性存储设备中，下次web应用重启后，tomcat会重新加载这些会话。   运行时状态+持久化状态
-会话的持久化好处：
-1）节约内存
-2）确保web应用重启后恢复重启前的会话 --故障恢复
+### tomcat的控制平台和管理平台
+本身属于tomcat的两个应用admin、manager，在webapps目录下。
+控制平台功能：配置tomcat服务器的各种元素
+管理平台功能：发布、启动、停止、卸载web应用
+
+### 安全域
+web服务器用来保护web应用的资源的一种机制，或者完全由web应用实现，或者采用web服务器通用的安全验证功能。
+用户  -- 角色  -- web资源
+类型：内存域（存放在xml配置中）、JDBC域（存放在数据库中）、数据源域（存放在数据库中）、JNDI域、JAAS域等
+用户登录的三种验证方法：
+1）基本验证（用户名密码+Base64编码--可读文本）
+2）摘要验证（用户名密码+MD5加密）
+3）基于表单的验证（自定义登录页面，非法用户名或口令验证）
+
+### tomcat服务器与其他HTTP服务器集成
+此时，tomcat工作方式通常是进程外的servlet容器。
+* 集成原因：
+  * 1）tomcat主要功能是提供Servlet/JSP容器，但是处理静态资源、管理功能等不如其他专业的HTTTP服务器，如IIS和Apache服务器。
+  * 2）对于不支持Servlet/JSP的HTTP服务器，可以通过tomcat服务器来运行Servlet/JSP组件。
+* 集成原理：
+  * 客户端 --- \[Connector连接器  -- tomcat服务器\]  ---\[JK插件 --- 其他HTTP服务器\]
+  * tomcat提供JK插件负责tomcat和其他HTTP服务器的通信，采用AJP协议。
+tomcat集群：高可用性、高性能计算、负载均衡
+
+### tomcat中配置SSI
+SSI（Server Side Include）是指嵌入到HTML页面的一组指令集合，通用的、运行在服务器端，服务器端优先执行SSI命令获取结果后放到响应结果中（动态完成一些简单功能）
+tomcat中配置支持SSI：/conf/web.xml中的servlet-mapping元素
+SSI格式：<!--#指令名参数名="参数值" -->   .shtml文件
+```
+ <html>   
+  <head> 
+   <title>HTML测试</title>  
+  </head>
+  <body>     
+   欢迎您于（<!--#echo var="DATE_LOCAL" -->）访问本网站。
+  </body>
+ </html>
+ 
+eg.#echo、#include、#exec、#config等
+```
+### tomcat中配置SSL
+SSL（Server Socket Layer）一种保证网络上的两个节点进行安全通信的协议。加密通信、安全证书等。
+TLS（Transport Layer Security）IETF对SSL的标准化
+SSL和TLS建立在TCP/IP协议基础上，应用层协议采用SSL来保证安全通信
+HTTPS：建立在SSL协议上的HTTP（默认端口80），默认端口443
+tomcat中使用SSL：
+1）准备安全证书  权威机构获得或者使用keytool工具自我创建
+2）配置SSL连接器  server.xml文件中的Connnector元素的注释取消即可
+访问支持SSL的web站点：
+https访问后，服务器会发送安全证书到客户端，如不是权威机构颁发的证书，客户端浏览器会显示安全警报窗口，点击是表示信任该证书。
+
+### 创建嵌入式tomcat服务器
+此时，tomcat工作模式为进程内的Servlet容器。
+tomcat嵌入到java应用程序中，控制tomcat服务器的启动和关闭
+
+### tomcat阀
+tomcat阀：对于catalina容器接收到的HTTP请求进行预处理；  --只适用于tomcat
+过滤器：Java Servlet规范提出的，适用于所有Servlet容器
+类型：
+1）客户访问日志阀
+2）远程地址过滤器   ip过滤
+3）远程主机过滤器   host名过滤
+4）客户请求记录器
+
+### 使用ANT工具管理web应用
+类似于传统的make工具
+
+### 使用Log4J进行日志操作
+
+
 
 
 # XML
