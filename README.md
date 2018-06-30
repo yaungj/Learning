@@ -313,9 +313,54 @@ SOAP 是一种用于访问web service的协议，基于XML，独立于语言、�
 * UDDI 指通用的描述、发现以及整合（Universal Description, Discovery and Integration）。
 UDDI 是一种目录服务，通过它，企业可注册并搜索 Web services。由 WSDL 描述的网络服务接口目录。经由 SOAP 进行通迅。
 
-# Java
-
+# Servlet技术
+* Servlet是JavaWeb应用中最核心的组件，本身也是java编写的类，Servlet对象由Servlet容器创建。
+* Servlet的功能：
+  * 1）动态生成HTML文档、图像等；
+  * 2）将请求转发给同一个web应用中的其他Servlet组件，同一个web应用内web组件之间的合作；
+  * 3）访问Servlet容器内的其他web应用，将请求转发给其他web应用中的Servlet组件；
+  * 4）读取客户端的Cookie，以及向客户端写入Cookie；
+  * 5）访问其他服务器资源（如数据库、基于java的应用程序等）
+  * 6）发送供客户端下载的文件；
+  * 7）读取并保存客户端的上传文件；
+  * 8）访问Servlet容器为web应用提供的工作目录；
+  * 9）处理由多个客户端同时访问web应用中的相同资源导致的并发问题。
+* Servlet对象模型：
+  * 请求对象：ServletRequest、HttpServletRequest 从中获取客户端请求信息
+  * 响应对象：ServletResponse、HttpServletResponse 生成响应结果
+  * Servlet配置对象：ServletConfig 获取初始化参数信息
+  * Servlet上下文对象：ServletContext 访问容器提供的各种资源
+* Servlet API：
+* Servlet接口：
+  * init(ServletConfig config)方法：初始化Servlet对象
+  * service(ServletRequest req,ServletResponse res)方法：负责响应客户端的请求
+  * destroy()方法：释放Servlet对象占用的资源
+  * getServletConfig()方法：返回ServletConfig对象
+  * getServletInfo()方法：返回一个字符串，包含Servlet的信息。
+* JavaWeb应用的生命周期： -由Servlet容器控制
+  * 启动阶段
+    * web.xml加载到内存、创建ServletContext对象、初始化Filter（过滤器）、初始化Servlet
+  * 运行时阶段
+    * 应用的所有Servlet处于待命状态，随时响应客户端请求，提供响应的服务
+  * 终止阶段
+    * 销毁web应用中所有处理运行时状态的Servlet、Filter；
+    * 销毁所有与web应用相关的对象。 
+ * tomcat管理平台manager（本身也是一个web应用）管理web应用生命周期 --平台界面操作web应用
+   * Servlet容器启动时会启动web应用，web应用启动后就处于运行时状态；
+   * Servlet容器被关闭时，会先终止所有web应用
+* Servlet的生命周期：--也是由Servlet容器控制
+  * 初始化阶段：特定Servlet被客户端首次请求访问；web应用被重启时，web应用中的所有Servlet都会被重新初始化
+    * 1）加载Servlet类
+    * 2）创建ServletConfig对象
+    * 3）创建Servlet对象
+    * 4）调用Servlet对象的init()方法
+  * 运行时阶段
+    * Servlet容器将响应结果发送给客户时就会销毁ServletRequest对象和ServletResponse对象。
+  * 销毁阶段
+    * web应用被终止时，Servlet容器会先调用web应用中所有Servlet对象的destroy()方法，然后再销毁Servlet对象。
   
+服务端的HttpServlet可通过设置特定的HTTP响应头来禁止客户端缓存网页（因为动态更新、含有敏感数据等）。
+
 
 
 # Python
