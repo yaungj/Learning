@@ -361,6 +361,13 @@ UDDI 是一种目录服务，通过它，企业可注册并搜索 Web services�
   
 服务端的HttpServlet可通过设置特定的HTTP响应头来禁止客户端缓存网页（因为动态更新、含有敏感数据等）。
 
+# 比较HTML、Servlet、JSP（Java Server Page --Servlet的扩展）
+1）静态HTML  --简洁直观
+浏览器--请求访问hello.html--Web服务器--读取hello.html中的数据
+2）Servlet动态生成html页面  --代码繁琐
+浏览器--请求访问helloServlet--Web服务器--运行helloServlet--生成html文档
+3）JSP动态生成html页面 --html文件中加入Java程序片段和JSP标记
+JSP语法、指令、生命周期
 
 
 # Python
