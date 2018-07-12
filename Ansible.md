@@ -30,6 +30,72 @@
 
 * 只有spawn执行的命令结果才会被expect捕捉到，因为spawn会启动一个进程，只有这个进程的相关信息才会被捕捉到
 
+# 
+    [mcbadm@yhost ~]$ cat /etc/ansible/hosts 
+    # This is the default ansible 'hosts' file.
+    #
+    # It should live in /etc/ansible/hosts
+    #
+    #   - Comments begin with the '#' character
+    #   - Blank lines are ignored
+    #   - Groups of hosts are delimited by [header] elements
+    #   - You can enter hostnames or ip addresses
+    #   - A hostname/ip can be a member of multiple groups
+    
+    # Ex 1: Ungrouped hosts, specify before any group headers.
+    
+    #green.example.com
+    #blue.example.com
+    # Ex 2: A collection of hosts belonging to the 'webservers' group
+    
+    [webservers]
+    
+    # If you have multiple hosts following a pattern you can specify
+    # them like this:
+    #www[001:006].example.com
+    # Ex 3: A collection of database servers in the 'dbservers' group
+    
+    [dbservers]
+    
+    [MYCAT]
+    192.168.50.84
+    192.168.50.85
+    
+    [PAAS_HOSTS]
+    192.168.50.58
+    192.168.50.59
+    192.168.50.60
+    192.168.50.61
+    192.168.50.62
+    192.168.50.63
+    
+    [ZOOKEEPER]
+    192.168.50.70
+    192.168.50.71
+    192.168.50.72
+    
+    [REDIS]
+    192.168.50.73
+    192.168.50.74
+    192.168.50.75
+    192.168.50.76
+    192.168.50.77
+    192.168.50.78
+    
+    [MONITOR]
+    192.168.50.79
+    
+    [MYSQL_VIP]
+    192.168.50.230
+    192.168.50.231
+    192.168.50.232
+    
+    [MYSQL_HOSTS]
+    192.168.50.10
+    192.168.50.11
+    192.168.50.13
+    192.168.50.14
+
 * 在使用ansible中的时候，默认的模块是-m command，从而模块的参数不需要填写，直接使用即可。
   * ansible ZOOKEEPER -m[module] copy -u "mcbadm" -a[‘Arguments’] "src=/home/mcbadm/zookeeper-3.4.5.tar.gz dest=/app/zookeeper-3.4.5.tar.gz"
   * ansible ZOOKEEPER -a "chdir=/app tar -zxvf zookeeper-3.4.5.tar.gz"
