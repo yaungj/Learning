@@ -14,5 +14,7 @@
     [root@yhost ~]# ll /dev/vd*
     brw-rw---- 1 root disk 253, 0 Jun 12 19:04 /dev/vda
     brw-rw---- 1 root disk 253, 1 Jun 12 19:04 /dev/vda1
+*  df -h\[H\]
+*  LVM逻辑卷管理：PV-VG-LV概念
 
 # 2、用户和组
