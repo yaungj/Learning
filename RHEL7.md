@@ -7,7 +7,7 @@
 *  文件系统驻留在物理磁盘或分区等存储设备上。
 *  挂载：将新文件系统添加到现有目录树的过程
 *  挂载点：挂载了新文件系统的目录
-*  块设备：存储设备由一个特殊文件类型b表示,块设备存储在/dev目录中，RHEL中检测到的第一个硬盘驱动器/dev/sda,第二个/dev/sdb,sda的分区依次是/dev/sda1、/dev/sda2、/dev/sda3...而虚拟机中的硬盘驱动器例外，通常为/dev/vda、/dev/vdb等，如下所示：
+*  块设备：存储设备由一个特殊文件类型b表示,块设备存储在/dev目录中，RHEL中检测到的第一个SCSI、PATA/SATA或USB硬盘驱动器/dev/sda,第二个/dev/sdb,sda的分区依次是/dev/sda1、/dev/sda2、/dev/sda3...而虚拟机中的硬盘驱动器例外，通常为/dev/vda、/dev/vdb等，如下所示：
 # 
     [root@yhost dev]# df
     Filesystem     1K-blocks    Used Available Use% Mounted on
@@ -17,6 +17,7 @@
     brw-rw---- 1 root disk 253, 1 Jun 12 19:04 /dev/vda1
 *  查看目录的磁盘使用情况：df -h\[H\] directory    # -h表示使用2的10次方单位（1024），-H使用SI单位，即10的3次方
 *  LVM逻辑卷管理：PV-VG-LV概念
+ *  fdisk命令操作磁盘
 *  文件链接
 硬链接
 软链接
@@ -27,6 +28,9 @@
 UUID 文件系统的通用唯一识别符
 blkid命令：简要列出其上具有文件系统的现有分区和文件系统的UUID，以及用于格式化该分区的文件系统
 注意：挂载到现有目录时，请先备份目录中已存在的文件，否则挂载后之前的文件不可访问
+ *  手动挂载
+ *  自动挂载
+    /etc/fstab
 * 卸载文件系统
 umount \[目标目录\]
 lsof  \[目标目录\] 卸载前需确认当前目录无进程访问，否则无法卸载 ---解释了为什么平时扩容的时候让退出当前目录
