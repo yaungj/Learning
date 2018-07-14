@@ -17,7 +17,7 @@
     brw-rw---- 1 root disk 253, 1 Jun 12 19:04 /dev/vda1
 *  查看目录的磁盘使用情况：df -h\[H\] directory    # -h表示使用2的10次方单位（1024），-H使用SI单位，即10的3次方
 *  LVM逻辑卷管理：PV-VG-LV概念
- *  fdisk命令操作磁盘
+  * fdisk命令操作磁盘
 *  文件链接
 硬链接
 软链接
