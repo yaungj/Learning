@@ -37,8 +37,11 @@
     brw-rw---- 1 root disk 253, 0 Jun 12 19:04 /dev/vda
     brw-rw---- 1 root disk 253, 1 Jun 12 19:04 /dev/vda1
 *  查看目录的磁盘使用情况：df -h\[H\] directory    # -h表示使用2的10次方单位iB（1024），-H使用SI单位，即10的3次方
+*  磁盘分区
+  * MBR分区方案 32位存储 最多15个分区 单个分区最大2TiB   fdisk命令
+  * GPT分区方案 64位存储 最多128个分区 单个分区最大8ZiB(B,KB,MB,GB,TB,EB,ZB,YB,BB)   gdisk命令   
 *  LVM逻辑卷管理：PV-VG-LV概念
-  * fdisk命令操作磁盘
+  * 磁盘分区（准备设备）--pvcreate创建PV（物理卷）--vgcreate创建VG（卷组）--lvcreate创建LV(逻辑卷）--mkfs格式化文件系统--使用
 *  文件链接  
    硬链接  
    软链接  
