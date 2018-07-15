@@ -42,7 +42,7 @@ linux中具有单个根（/目录）的目录树结构，层次结构可随时�
   * MBR（主启动记录）分区方案 32位存储 最多4个主分区，最多共15个分区 单个分区最大2TiB   fdisk命令
   * GPT（GUID分区表）分区方案 64位存储 最多128个分区 单个分区最大8ZiB(B,KB,MB,GB,TB,EB,ZB,YB,BB)   gdisk命令   
 *  LVM逻辑卷管理：PV-VG-LV概念
-   * fdisk磁盘分区（物理设备之一）--pvcreate创建PV（物理卷-用于注册基础物理设备，LVM自动将PV划分为物理区块PE）--vgcreate创建VG（卷组）--lvcreate创建LV(逻辑卷）--mkfs格式化文件系统--存储使用--扩展LV
+   * fdisk磁盘分区（物理设备之一）--pvcreate创建PV（物理卷-用于注册基础物理设备，LVM自动将PV划分为物理区块PE）--vgcreate创建VG（卷组）--lvcreate创建LV(逻辑卷）--mkfs格式化文件系统--挂载到具体目录--存储使用--扩展LV
 *  文件链接  
    硬链接  
    软链接  
@@ -73,10 +73,12 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证
 
 
 # 服务管理
-systemctl status service
-systemctl start service
-systemctl enable service
-systemctl stop service
+
+    yum -y install service
+    systemctl status service
+    systemctl start service
+    systemctl enable service
+    systemctl stop service
 
 # 进程管理
 
