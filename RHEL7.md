@@ -38,9 +38,9 @@ linux中具有单个根（/目录）的目录树结构，层次结构可随时�
     brw-rw---- 1 root disk 253, 0 Jun 12 19:04 /dev/vda
     brw-rw---- 1 root disk 253, 1 Jun 12 19:04 /dev/vda1
 *  查看目录的磁盘使用情况：df -h\[H\] directory    # -h表示使用2的10次方单位iB（1024），-H使用SI单位，即10的3次方
-*  磁盘分区
-  * MBR分区方案 32位存储 最多15个分区 单个分区最大2TiB   fdisk命令
-  * GPT分区方案 64位存储 最多128个分区 单个分区最大8ZiB(B,KB,MB,GB,TB,EB,ZB,YB,BB)   gdisk命令   
+*  磁盘分区：将硬盘驱动器划分为多个逻辑存储单元
+  * MBR（主启动记录）分区方案 32位存储 最多4个主分区，最多共15个分区 单个分区最大2TiB   fdisk命令
+  * GPT（GUID分区表）分区方案 64位存储 最多128个分区 单个分区最大8ZiB(B,KB,MB,GB,TB,EB,ZB,YB,BB)   gdisk命令   
 *  LVM逻辑卷管理：PV-VG-LV概念
    * fdisk磁盘分区（物理设备之一）--pvcreate创建PV（物理卷-用于注册基础物理设备，LVM自动将PV划分为物理区块PE）--vgcreate创建VG（卷组）--lvcreate创建LV(逻辑卷）--mkfs格式化文件系统--存储使用--扩展LV
 *  文件链接  
@@ -57,9 +57,8 @@ linux中具有单个根（/目录）的目录树结构，层次结构可随时�
     
     注意：挂载到现有目录时，请先备份目录中已存在的文件，否则挂载后之前的文件不可访问 
     
-  * 手动挂载
-  * 自动挂载 
-    /etc/fstab 
+  * 手动挂载  -临时挂载
+  * 自动挂载  -永久挂载 /etc/fstab 
 * 卸载文件系统  
 umount \[目标目录\]  
 lsof  \[目标目录\] 卸载前需确认当前目录无进程访问，否则无法卸载 ---解释了为什么平时扩容的时候让退出当前目录  
@@ -74,7 +73,10 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证
 
 
 # 服务管理
-
+systemctl status service
+systemctl start service
+systemctl enable service
+systemctl stop service
 
 # 进程管理
 
