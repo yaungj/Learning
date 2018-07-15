@@ -43,7 +43,9 @@ linux中具有单个根（/目录）的目录树结构，层次结构可随时�
   * GPT（GUID分区表）分区方案 64位存储 最多128个分区 单个分区最大8ZiB(B,KB,MB,GB,TB,EB,ZB,YB,BB)   gdisk命令   
 *  LVM逻辑卷管理：PV-VG-LV概念
 
-<font color=#FF0000>  fdisk磁盘分区（物理设备之一）--pvcreate创建PV（物理卷-用于注册基础物理设备，LVM自动将PV划分为物理区块PE）--vgcreate创建VG（卷组）--lvcreate创建LV(逻辑卷）--mkfs格式化文件系统--挂载到具体目录--存储使用--扩展LV </font>
+<font color=#FF0000>
+  **fdisk磁盘分区（物理设备之一）--pvcreate创建PV（物理卷-用于注册基础物理设备，LVM自动将PV划分为物理区块PE）--vgcreate创建VG（卷组）--lvcreate创建LV(逻辑卷）--mkfs格式化文件系统--挂载到具体目录--存储使用--扩展LV**
+</font>
    
 *  文件链接  
    硬链接  
