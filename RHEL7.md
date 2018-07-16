@@ -99,5 +99,4 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证
 # 安全管理
 
 
-备注：  
-   1、[centos和redhat的区别]（https://blog.csdn.net/fd8559350/article/details/52604427）
+*[centos和redhat的区别](https://blog.csdn.net/fd8559350/article/details/52604427)
