@@ -72,6 +72,39 @@ lsof  \[目标目录\] 卸载前需确认当前目录无进程访问，否则无
 可移动介质在插入后会由图形桌面环境自动挂载，挂载点是/run/media/\<user\>/\<label\>，移除时请先卸载再拔出，否则可能丢失数据。  
 
 ## 3 NFS(网络文件系统)挂载
+* 网络文件系统标准协议，RHEL7默认支持NFSv4，v4不可用的情况下自动回退到v3和v2；NFSv4使用TCP协议通信。
+* NFS服务器导出共享，NFS客户端将导出的共享挂载到本地挂载点（目录）。
+
+* NFS共享的文件访问权限保护：
+   *  NFS服务器指定保护方法（身份验证等），客户端必须使用该方法（证书等）连接到该共享。
+   *　安全性方法：none、sys、krb5、krb5i、krb5p等
+　 *  Kerberos安全性：NFS使用nfs-secure服务（nfs-utils软件包的一部分）：协商和管理与服务器之间的通信。
+### 通过NFS手动挂载网络存储
+* 服务端
+# 
+    yum -y install nfs-utils 
+    systemctl start nfs-secure
+    systemctl enable nfs-secure
+    mkdir /share >创建共享目录
+    vim /etc/exports   >导出共享
+    /share  192.168.52.101/24(rw,sync,all_squash,anonuid=1000,anongid=1000)
+    
+    
+* 客户端
+# 
+    yum -y install nfs-utils
+    systemctl start nfs-secure
+    systemctl enable nfs-secure
+    showmount -e 192.168.52.101  >查看远程共享信息
+    mkdir /mounttest  >客户端新建挂载点
+    mount serverX:/share /mounttest  或vi /etc/fstab  >客户端挂载NFS
+    su - nfsuser
+    cd /mounttest
+    touch test.txt  >客户端新建文件，服务端查看验证
+    
+### 通过NFS自动挂载网络存储
+* 自动挂载器：autofs服务
+* 优点：Autofs与Mount/Umount的不同之处在于，它是一种看守程序。如果它检测到用户正试图访问一个尚未挂接的文件系统，它就会自动检测该文件系统，如果存在，        那么Autofs会自动将其挂接。另一方面，如果它检测到某个已挂接的文件系统在一段时间内没有被使用，那么Autofs会自动将其卸载。因此一旦运行了Autofs          后，用户就不再需要手动完成文件系统的挂接和卸载。
 
 ## 4 具有 SMB 的 NFS 挂载
 
