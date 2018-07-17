@@ -111,6 +111,7 @@ lsof  \[目标目录\] 卸载前需确认当前目录无进程访问，否则无
 * CIFS（Common Internet File System）通用的互联网文件系统，是基于SMB协议开发的文件共享协议。可以看做是增强SMB协议跨平台，通用性的协议。
 * samba是在Linux上实现SMB协议的自由软件
 
+[共享实例](http://blog.sina.com.cn/s/blog_76a30acd0102y92w.html)
 * NFS与SMB的区别：
   * NFS: Network File System 是已故的Sun公司制定的用于分布式访问的文件系统，它的本质是文件系统。主要在Unix系列操作系统上使用，基于TCP/IP协议层，可以将远程的计算机磁盘挂载到本地，像本地磁盘一样操作。
   * samba是Unix系统下实现的 Windows文件共享协议-CIFS，由于Windows共享是基于NetBios协议，是基于Ethernet的广播协议，在没有透明网桥的情况下（如VPN）是不能跨网段使用的。它主要用于unix和windows系统进行文件和打印机共享，也可以通过samba套件中的程序挂载到本地使用
