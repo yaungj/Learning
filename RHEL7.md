@@ -117,18 +117,29 @@ lsof  \[目标目录\] 卸载前需确认当前目录无进程访问，否则无
   * samba是Unix系统下实现的 Windows文件共享协议-CIFS，由于Windows共享是基于NetBios协议，是基于Ethernet的广播协议，在没有透明网桥的情况下（如VPN）是不能跨网段使用的。它主要用于unix和windows系统进行文件和打印机共享，也可以通过samba套件中的程序挂载到本地使用
 
 # 用户管理
+* 用户和组
 id username
-UID GID
+UID GID(系统组0-999，用户专用组1000以上)
 su 身份验证：对尝试访问的账户密码验证
 su以当前环境设置启动no-login shell，而su - 则启动login shell（shell环境是切换后的用户身份环境）
-sudo 身份验证：对执行sudo用户自己的密码进行验证
+sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录：/var/log/secure
 * 小测试：  
 1、新建用户mcbadm具有root权限  
 2、新建用户组mcb,使组内用户具有root权限  
 #  
     vi /etc/sudoers
-
-
+*　用户密码管理 
+  * /etc/passwd
+  * /etc/shadow  RHEL7默认采用SHA-512加密  
+# 
+    yangjian:$1$/htSp2Qr$99awsw99oBTbsrEjpar810:17729:0:99999:7:::
+    $1 哈希算法
+    $/htSp2Qr 用户salt
+    $99awsw99oBTbsrEjpar810 已加密哈希
+    哈希算法（用户salt+用户密码）=已加密哈希
+  * /etc/login.defs配置用户密码策略 -如强制使用户每30天修改一次密码
+  * change命令设置密码过期策略
+  * usermod命令锁定账户-防止离开公司的员工登陆  解锁：usermod -U username
 # 服务管理
 
     yum -y install service
