@@ -117,10 +117,16 @@ lsof  \[目标目录\] 卸载前需确认当前目录无进程访问，否则无
   * samba是Unix系统下实现的 Windows文件共享协议-CIFS，由于Windows共享是基于NetBios协议，是基于Ethernet的广播协议，在没有透明网桥的情况下（如VPN）是不能跨网段使用的。它主要用于unix和windows系统进行文件和打印机共享，也可以通过samba套件中的程序挂载到本地使用
 
 # 用户管理
-
+id username
+UID GID
 su 身份验证：对尝试访问的账户密码验证
 su以当前环境设置启动no-login shell，而su - 则启动login shell（shell环境是切换后的用户身份环境）
 sudo 身份验证：对执行sudo用户自己的密码进行验证
+* 小测试：  
+1、新建用户mcbadm具有root权限  
+2、新建用户组mcb,使组内用户具有root权限  
+#  
+    vi /etc/sudoers
 
 
 # 服务管理
