@@ -116,6 +116,11 @@ lsof  \[目标目录\] 卸载前需确认当前目录无进程访问，否则无
   * NFS: Network File System 是已故的Sun公司制定的用于分布式访问的文件系统，它的本质是文件系统。主要在Unix系列操作系统上使用，基于TCP/IP协议层，可以将远程的计算机磁盘挂载到本地，像本地磁盘一样操作。
   * samba是Unix系统下实现的 Windows文件共享协议-CIFS，由于Windows共享是基于NetBios协议，是基于Ethernet的广播协议，在没有透明网桥的情况下（如VPN）是不能跨网段使用的。它主要用于unix和windows系统进行文件和打印机共享，也可以通过samba套件中的程序挂载到本地使用
 
+## 查找文件
+* locate 根据locate数据库中的文件名或路径返回搜索结果；locate数据库每日自动更新，也可手动更新updatedb
+* find 实时搜索--用户必须具有查看其内容的目录的读取r和执行权限x
+* whereis/which  查找执行程序的路径
+
 # 用户管理
 * 用户和组
 id username
@@ -140,6 +145,20 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
   * /etc/login.defs配置用户密码策略 -如强制使用户每30天修改一次密码
   * change命令设置密码过期策略
   * usermod命令锁定账户-防止离开公司的员工登陆  解锁：usermod -U username
+* 文件权限管理
+  * 更改权限 
+    * 符号法chmod u/g/o/a  +/-/= r/w/x  file/directory 
+    * 数值法chmod 421  file/directory
+    * -R选项  递归修改
+  * 更改用户及组
+    * chown user:group file/directory
+    * chgrp group file/directory
+    * -R选项  递归修改
+  * 特殊权限
+    * setuid：u+s 以拥有文件的用户身份，而不是以允许文件的用户身份执行文件，对目录无影响
+    * setgid：g+s 对文件无影响，对目录中的文件继承该目录的组所属关系
+    * sticky：o+s 对文件无影响，对目录具有写入权限的用户仅可以删除其所拥有的文件
+  * 默认权限 umask
 # 服务管理
 
     yum -y install service
