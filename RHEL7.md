@@ -107,7 +107,9 @@ lsof  \[目标目录\] 卸载前需确认当前目录无进程访问，否则无
 * 优点：Autofs与Mount/Umount的不同之处在于，它是一种看守程序。如果它检测到用户正试图访问一个尚未挂接的文件系统，它就会自动检测该文件系统，如果存在，        那么Autofs会自动将其挂接。另一方面，如果它检测到某个已挂接的文件系统在一段时间内没有被使用，那么Autofs会自动将其卸载，释放网络资源。因此一旦        运行了Autofs后，用户就不再需要手动完成文件系统的挂接和卸载。
 
 ## 4 具有 SMB 的 NFS 挂载
-
+* SMB(Server Message Block)协议是微软（Microsoft）和英特尔(Intel)在1987年制定的协议，主要是作为Microsoft网络的通讯协议
+* CIFS（Common Internet File System）通用的互联网文件系统，是基于SMB协议开发的文件共享协议。可以看做是增强SMB协议跨平台，通用性的协议。
+* samba是在Linux上实现SMB协议的自由软件
 
 * NFS与SMB的区别：
   * NFS: Network File System 是已故的Sun公司制定的用于分布式访问的文件系统，它的本质是文件系统。主要在Unix系列操作系统上使用，基于TCP/IP协议层，可以将远程的计算机磁盘挂载到本地，像本地磁盘一样操作。
