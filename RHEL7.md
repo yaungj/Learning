@@ -1,16 +1,17 @@
 # Table of Contents
 
-* [文件系统](#文件系统)
+* [文件管理](#文件管理)
 * [用户管理](#用户管理)
 * [服务管理](#服务管理)
 * [进程管理](#进程管理)
 * [网络管理](#网络管理)
 * [安全管理](#安全管理)
+* [脚本](#脚本)
 
 
-# 文件系统
+# 文件管理
 linux中具有单个根（/目录）的目录树结构，层次结构可随时扩展，只需添加包含支持的文件系统的新磁盘或分区（存储设备划分为更小的块），即可在文件系统树的任何位置增加磁盘空间。
-* 接口：物理存储设备--电子文档、文件夹
+* 文件系统：接口，物理存储设备--电子文档、文件夹
 #  
     /dev  设备文件
     /boot  开机启动过程所需的文件
@@ -25,7 +26,7 @@ linux中具有单个根（/目录）的目录树结构，层次结构可随时�
     /sbin ->  /usr/sbin
     /lib  ->  /usr/lib
     /lib64 -> /usr/lib64
-## 1 基本概念
+## 1 文件系统
 *  文件系统驻留在物理磁盘或分区等存储设备上。
 *  挂载：将新文件系统添加到现有目录树的过程
 *  挂载点：挂载了新文件系统的目录
@@ -119,7 +120,15 @@ lsof  \[目标目录\] 卸载前需确认当前目录无进程访问，否则无
 ## 查找文件
 * locate 根据locate数据库中的文件名或路径返回搜索结果；locate数据库每日自动更新，也可手动更新updatedb
 * find 实时搜索--用户必须具有查看其内容的目录的读取r和执行权限x
+  * 选项：-user -group -type f|d|l|b -name -perm -size -mmin 60(1个小时以前)
 * whereis/which  查找执行程序的路径
+
+## 归档文件
+* tar -[c|t|x]  vf    -z(gzip) j(bzip2) J(xz)
+## 传输文件
+* ftp sftp scp(复制所有内容) rsync(仅复制差异部分)
+  * scp /home/mcbadm/.profile serverX:/home/yangjian/
+  * scp serverX:/home/mcbadm/.profile  /home/yangjian/ 
 
 # 用户管理
 * 用户和组
@@ -159,7 +168,18 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     * setgid：g+s 对文件无影响，对目录中的文件继承该目录的组所属关系
     * sticky：o+s 对文件无影响，对目录具有写入权限的用户仅可以删除其所拥有的文件
   * 默认权限 umask
+* 高级文件权限管理
+  * ACL访问控制列表   getfacl/setfacl 
+  * SELinux上下文  基于服务的权限控制
 # 服务管理
+
+* OpenSSH服务
+
+* 电子邮件服务
+
+* Apache HTTPD Web服务
+
+* 数据库服务
 
     yum -y install service
     systemctl status service
@@ -175,5 +195,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 
 # 安全管理
 
+# 脚本
 
+* 帮助文档pinfo man /usr/share/doc
 *[centos和redhat的区别](https://blog.csdn.net/fd8559350/article/details/52604427)
