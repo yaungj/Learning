@@ -172,7 +172,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
       * chmod 7554 send.sh >数值法设置-第四位是特权位
   * 默认权限 umask
 * 高级文件权限管理
-  * ACL访问控制列表   getfacl/setfacl 
+  * ACL访问控制列表   getfacl/setfacl -m设置权限   -x删除权限
   * SELinux上下文  基于服务的权限控制  目标：防止已遭泄露的系统服务访问用户数据。
     * SELinux上下文：用户、角色、类型和敏感度
     * SELinux开关：getenforce/setenforce或者/etc/selinux/config  默认关闭
