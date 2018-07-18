@@ -181,9 +181,16 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     * semanage fcontext用于显示或修改上下文
 # 服务管理
     yum -y install service
+    systemctl   >列出所有系统服务
+    systemctl list-units >列出所有启动units
     systemctl status service
+    systemctl is-active service
+    systemctl is-enable service
     systemctl start service
+    systemctl restart service
+    systemctl reload service
     systemctl enable service
+    systemctl disable service
     systemctl stop service
 * OpenSSH服务
 
