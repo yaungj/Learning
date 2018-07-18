@@ -204,6 +204,9 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 # 安全管理
 
 # 脚本
+* 调试脚本
+  * #!/bin/bash -x
+  * >bash -x scriptname
 
 * 帮助文档pinfo man /usr/share/doc
 *[centos和redhat的区别](https://blog.csdn.net/fd8559350/article/details/52604427)
