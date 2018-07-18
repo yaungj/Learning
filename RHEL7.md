@@ -164,10 +164,12 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     * chown user:group file/directory
     * chgrp group file/directory
     * -R选项  递归修改
-  * 特殊权限
-    * setuid：u+s 以拥有文件的用户身份，而不是以允许文件的用户身份执行文件，对目录无影响
-    * setgid：g+s 对文件无影响，对目录中的文件继承该目录的组所属关系
-    * sticky：o+s 对文件无影响，对目录具有写入权限的用户仅可以删除其所拥有的文件
+  * 特殊权限-第四位
+    * setuid(4)：u+s 以拥有文件的用户身份，而不是以允许文件的用户身份执行文件，对目录无影响 --修改进程的属主
+    * setgid(2)：g+s 对文件无影响，对目录中的文件继承该目录的组所属关系 
+    * sticky(1)：o+s 对文件无影响，对目录具有写入权限的用户仅可以删除其所拥有的文件
+      * chmod u+s sqlplus >当其他用户执行oracle的sqlplus这个程序时，他的身份因这个程序暂时变成oracle
+
   * 默认权限 umask
 * 高级文件权限管理
   * ACL访问控制列表   getfacl/setfacl 
