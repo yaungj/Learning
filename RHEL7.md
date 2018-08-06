@@ -205,11 +205,37 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 
 # 进程管理
 * linux任务管理
+  * 一次性任务：at命令  系统守护进程atd 提供a-z共26个队列，系统优先级逐次降低
+#####
+    查看任务 atq  = \[at -l\]
+    检查任务实际执行的命令 at -c JOBNUMBER
+    制定任务 at -q h test now +5min   Ctrl+D退出
+    删除任务 atrm JOBNUMBER
+  * 周期性任务 crontab crond守护进程 分时日月周  */5 9-16 * * 1-5
+#####
+    crontab -l[r|e]
+    crontab cronjobfilename
 
 * 进程优先级
-
+  * 进程（已启动的可执行程序的运行中实例）的组成部分：已分配的内存地址空间、安全属性、一个或多个执行线程、进程状态
+  * 进程的环境：本地和全局变量、当前调度的上下文、分配的系统资源（文件描述符和网络端口等）
+  * 第一个系统进程是systemd，所有进程都是第一个系统进程的后代
+  * 进程状态：运行中 R  睡眠S|D|K 停止T  僵停Z|X
+  * 进程调度 多核 时间片
+  * nice级别 -20~19 通常为0，进程默认继承父进程的nice级别，nice级别越高，优先级越低 top命令参数NI
+#####
+    显示所有进程ps aux[lax]
+    ps axo pid,comm,nice --sort=nice
+    指定nice级别启动命令 nice -n 15 startup.sh &   只有root可以设置-20~-1级别，其他只能设置正的nice级别
+    修改进程的nice级别 renice -n -7 $(pgrep startup.sh)
+ 
 * 进程监控管理
-
+  * 控制作业 &后台运行  fg %作业ID（jobs命令查看） 将后台作业转至前台
+  * 进程管理信号：HUP挂起、INT键盘中断Ctrl+c、QUIT键盘退出Ctrl+\、TSTP键盘停止Ctrl+z、KILL中断、TERM（可被拦截、友好的方式）、CONT继续、STOP
+  * kill -l指定信号中断 PID
+  * killall 命令名称或匹配的进程
+  * pkill 高级选择条件
+  * w命令查看当前用户及其积累的活动
 * 守护进程
 
 # 网络管理
