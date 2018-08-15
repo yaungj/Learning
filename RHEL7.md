@@ -5,6 +5,7 @@
 * [服务管理](#服务管理)
 * [进程管理](#进程管理)
 * [网络管理](#网络管理)
+* [日志管理](#日志管理)
 * [安全管理](#安全管理)
 * [脚本编写](#脚本编写)
 * [Linux容器和Docker](#Linux容器和Docker)
@@ -119,15 +120,15 @@ lsof  \[目标目录\] 卸载前需确认当前目录无进程访问，否则无
   * NFS: Network File System 是已故的Sun公司制定的用于分布式访问的文件系统，它的本质是文件系统。主要在Unix系列操作系统上使用，基于TCP/IP协议层，可以将远程的计算机磁盘挂载到本地，像本地磁盘一样操作。
   * samba是Unix系统下实现的 Windows文件共享协议-CIFS，由于Windows共享是基于NetBios协议，是基于Ethernet的广播协议，在没有透明网桥的情况下（如VPN）是不能跨网段使用的。它主要用于unix和windows系统进行文件和打印机共享，也可以通过samba套件中的程序挂载到本地使用
 
-## 查找文件
+## 5 查找文件
 * locate 根据locate数据库中的文件名或路径返回搜索结果；locate数据库每日自动更新，也可手动更新updatedb
 * find 实时搜索--用户必须具有查看其内容的目录的读取r和执行权限x
   * 选项：-user -group -type f|d|l|b -name -perm -size -mmin 60(1个小时以前)
 * whereis/which  查找执行程序的路径
 
-## 归档文件
+## 6 归档文件
 * tar -[c|t|x]  vf    -z(gzip) j(bzip2) J(xz)
-## 传输文件
+## 7 传输文件
 * ftp sftp scp(复制所有内容) rsync(仅复制差异部分)
   * scp /home/mcbadm/.profile serverX:/home/yangjian/
   * scp serverX:/home/mcbadm/.profile  /home/yangjian/ 
@@ -181,7 +182,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     * restorecon设置默认文件上下文的规则
     * semanage fcontext用于显示或修改上下文
 # 服务管理
-## systemctl和systemd单元
+## 1 systemctl和systemd单元
  * 系统启动和服务器进程由systemd系统和服务管理器进行管理
  * 守护进程 是在执行各种任务的后台等待或运行的进程。守护进程名称一般以d结束。为了监听连接，守护进程使用套接字。
  * 服务 通常指的是一个或多个守护进程
@@ -204,18 +205,18 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     systemctl disable service
     systemctl stop service
     systemctl mask/unmask network >屏蔽服务
-## OpenSSH服务
+## 2 OpenSSH服务
 
-## 电子邮件服务
+## 3 电子邮件服务
 
-## Apache HTTPD Web服务
+## 4 Apache HTTPD Web服务
 
-## 数据库服务
+## 5 数据库服务
 
 
 
 # 进程管理
-* linux任务管理
+## 1 linux任务管理
   * 一次性任务：at命令  系统守护进程atd 提供a-z共26个队列，系统优先级逐次降低
 #####
     查看任务 atq  = \[at -l\]
@@ -227,7 +228,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     crontab -l[r|e]
     crontab cronjobfilename
 
-* 进程优先级
+## 2 进程优先级
   * 进程（已启动的可执行程序的运行中实例）的组成部分：已分配的内存地址空间、安全属性、一个或多个执行线程、进程状态
   * 进程的环境：本地和全局变量、当前调度的上下文、分配的系统资源（文件描述符和网络端口等）
   * 第一个系统进程是systemd，所有进程都是第一个系统进程的后代
@@ -251,7 +252,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     指定nice级别启动命令 nice -n 15 startup.sh &   只有root可以设置-20~-1级别，其他只能设置正的nice级别
     修改进程的nice级别 renice -n -7 $(pgrep startup.sh)
  
-* 进程监控管理
+## 3 进程监控管理
   * 控制作业 &后台运行  fg %作业ID（jobs命令查看） 将后台作业转至前台
   * 进程管理信号：HUP挂起、INT键盘中断Ctrl+c、QUIT键盘退出Ctrl+\、TSTP键盘停止Ctrl+z、KILL中断、TERM（可被拦截、友好的方式）、CONT继续、STOP
   * kill -l指定信号中断 PID
@@ -266,18 +267,20 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 * 守护进程systemd
 
 # 网络管理
-* 基础概念
+## 1 基础概念
 
-* firewalld服务限制网络通信
+## 2 firewalld服务限制网络通信
 
-* DNS管理
+## 3 DNS管理
 
-* 链路聚合和桥接
+## 4 链路聚合和桥接
 
-* IPv6网络管理
+## 5 IPv6网络管理
 
-* 网络端口安全性
+## 6 网络端口安全性
 
+
+# 日志管理
 
 
 # 安全管理
