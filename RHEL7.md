@@ -206,7 +206,15 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     systemctl stop service
     systemctl mask/unmask network >屏蔽服务
 ## 2 OpenSSH服务
-
+ * Open Secure Shell通过公钥加密的方式保证通信安全
+    * 以当前用户身份创建远程交互式shell：ssh remotehost
+    * 以其他用户身份创建远程交互式shell：ssh stu@remotehost
+    * 以远程用户身份在远程主机上通过将输出返回到本地：ssh stu@remotehost hostname
+ * w -f命令显示当前登录到计算机的用户列表，可以查看哪些用户以何种方式登录该主机
+ * SSH主机密钥:ssh客户端第一次连接ssh服务器时，登录之前服务器会向客户端发生公钥副本（存储在客户端的~/.ssh/known_hosts文件中），用于为通信渠道安全加密，并可验证客户端的服务器。   <<<   服务端公钥 --> 客户端~/.ssh/known_hosts
+ * 基于ssh密钥的身份验证（免密登录） ssh-keygen生成密钥（公钥+私钥）ssh-copy-id完复制   <<<  客户端公钥  --> 服务端
+ * SSH服务配置/etc/ssh/sshd_config-限制ssh登录：禁止root用户使用ssh登录、禁止使用ssh进行密码身份验证等
+ 
 ## 3 电子邮件服务
 
 ## 4 Apache HTTPD Web服务
