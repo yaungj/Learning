@@ -181,6 +181,16 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     * restorecon设置默认文件上下文的规则
     * semanage fcontext用于显示或修改上下文
 # 服务管理
+## systemctl和systemd单元
+ * 系统启动和服务器进程由systemd系统和服务管理器进行管理
+ * 守护进程 是在执行各种任务的后台等待或运行的进程。守护进程名称一般以d结束。为了监听连接，守护进程使用套接字。
+ * 服务 通常指的是一个或多个守护进程
+ * systemctl命令用于管理各种类型的systemd对象，即单元units：systemctl -t help查看所有单元类型列表
+   * 服务单元.service 代表系统服务
+   * 套接字单元.socket 代表进程间通信（IPS）套接字
+   * 路径单元.path 用于将服务的激活推迟到特定文件系统更改发生之后，如打印服务
+   
+######    
     yum -y install service
     systemctl   >列出所有系统服务
     systemctl list-units >列出所有启动units
@@ -189,17 +199,18 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     systemctl is-enable service
     systemctl start service
     systemctl restart service
-    systemctl reload service
-    systemctl enable service
+    systemctl reload service  >重新加载配置，进程ID不会变
+    systemctl enable service  >使服务（守护进程）在系统启动时启动
     systemctl disable service
     systemctl stop service
-* OpenSSH服务
+    systemctl mask/unmask network >屏蔽服务
+## OpenSSH服务
 
-* 电子邮件服务
+## 电子邮件服务
 
-* Apache HTTPD Web服务
+## Apache HTTPD Web服务
 
-* 数据库服务
+## 数据库服务
 
 
 
@@ -252,7 +263,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     * UNIX系统仅考虑CPU使用率和运行队列长度来指示系统负载，linux负载平均值还包含I/O的考量，所以如有负载平均值很高但是CPU活动很低，应该检查下磁盘和网络活动
     * 查看方式top、uptime、w，numbers of CPU=`cat /proc/cpuinfo|grep "model name"`,per-CPU load average=`uptime`/numbers of CPU
     
-* 守护进程
+* 守护进程systemd
 
 # 网络管理
 * 基础概念
