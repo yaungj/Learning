@@ -304,9 +304,18 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     ping -c3 ip|hostname    
  * 特殊地址localhost：127.0.0.1
  * NetworkManager 是监控和管理网络设置的守护进程，命令行和图形工具与之通信；
- * 配置：/etc/sysconfig/network-scripts 命令：nmcli 图形化工具：nm-connection-editor
+ * 配置：/etc/sysconfig/network-scripts/ifcfg-<name> 命令：nmcli 图形化工具：nm-connection-editor
 ######
     nmcli con show [--active] 显示连接的列表
+    nmcli con add con-name "default" type ethernet ifname eth0
+    nmcli con up "default" 激活更改
+    nmcli con add con-name "static" ifname eth0 autoconnnet no type ethernet ip4 172.25.X.10/24 gw4 172.25.X.254
+    nmcli con show "static"
+    nmcli con mod "static" ipv4.dns 172.25.X.254  更换DNS服务器
+    nmcli con mod "static" ipv4.addresses "172.25.X.10/24 172.25.X.254"  更换ip地址和网关
+    nmcli con up "static"    
+    nmcli con down "static"
+    nmcli con reload
  * hostnamectl set-hostname yhost; hostname   /etc/hosts   静态主机名/etc/hostname
  * DNS配置/etc/resolv.conf
  
