@@ -205,8 +205,20 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     systemctl disable service
     systemctl stop service
     systemctl mask/unmask network >屏蔽服务
-## 2 NTP服务
-
+## 2 chronyd服务
+ *  网络时间协议NTP是计算机通过互联网提供并获取正确时间信息的一种标准方法
+ * timedatectl命令简要显示当前的时间相关系统设置
+######
+    root@yhost:/root>timedatectl list-timezones
+    Africa/Abidjan
+    Africa/Accra
+    Africa/Addis_Ababa
+    Africa/Algiers
+    ...
+    timedatectl set-timezone Asia/Shanghai
+    timedatectl set-time 9:00:00
+    timedatectl set-ntp true 启用NTP同步
+ * chronyd服务通过与配置的NTP服务器同步，使通常不精确的本地硬件时钟（RTC）保持准确。/etc/chrony.conf,配置完需重启chronyd服务   
 ## 3 OpenSSH服务
  * Open Secure Shell通过公钥加密的方式保证通信安全
     * 以当前用户身份创建远程交互式shell：ssh remotehost
@@ -313,6 +325,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     * chown root:systemd-journal /var/log/journal
     * chmod 2755 /var/log/journal
     * killall -USER1 systemd-journald 或重启系统即可生效
+       * USR1通常被用来告知应用程序重载配置文件；例如，向Apache HTTP服务器发送一个USR1信号将导致以下步骤的发生：停止接受新的连接，等待当前连接停止，重新载入配置文件，重新打开日志文件，重启服务器，从而实现相对平滑的不关机的更改。
 #####
     journalctl -n  显示最后10个日志条目
     journalctl -n  5 最后5个日志条目
