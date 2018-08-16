@@ -184,7 +184,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 # 服务管理
 ## 1 systemctl和systemd单元
  * 系统启动和服务器进程由systemd系统和服务管理器进行管理
- * 守护进程 是在执行各种任务的后台等待或运行的进程。守护进程名称一般以d结束。为了监听连接，守护进程使用套接字。
+ * 守护进程 是在执行各种任务的后台等待或运行的进程。守护进程名称一般以d结束。为了监听连接，守护进程使用套接字。systemd 进程ID 1
  * 服务 通常指的是一个或多个守护进程
  * systemctl命令用于管理各种类型的systemd对象，即单元units：systemctl -t help查看所有单元类型列表
    * 服务单元.service 代表系统服务
@@ -205,7 +205,9 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     systemctl disable service
     systemctl stop service
     systemctl mask/unmask network >屏蔽服务
-## 2 OpenSSH服务
+## 2 NTP服务
+
+## 3 OpenSSH服务
  * Open Secure Shell通过公钥加密的方式保证通信安全
     * 以当前用户身份创建远程交互式shell：ssh remotehost
     * 以其他用户身份创建远程交互式shell：ssh stu@remotehost
@@ -215,11 +217,11 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
  * 基于ssh密钥的身份验证（免密登录） ssh-keygen生成密钥（公钥+私钥）ssh-copy-id完复制   <<<  客户端公钥  --> 服务端
  * SSH服务配置/etc/ssh/sshd_config-限制ssh登录：禁止root用户使用ssh登录、禁止使用ssh进行密码身份验证等
  
-## 3 电子邮件服务
+## 4 电子邮件服务
 
-## 4 Apache HTTPD Web服务
+## 5 Apache HTTPD Web服务
 
-## 5 数据库服务
+## 6 数据库服务
 
 
 
@@ -289,8 +291,36 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 
 
 # 日志管理
-
-
+## 1 RHEL7系统日志架构
+ * systemd-journald守护进程可以收集来自内核、启动过程的早期阶段、标准输出、系统日志，以及守护进程启动和运行期间错误的消息。默认重启系统之后不保留。
+ * rsyslog服务根据类型和优先级排列系统日志消息，将其写入到/var/log目录内的永久文件中
+#####
+    /var/log/messages  大多数系统日志消息记录
+    /var/log/secure  安全与身份验证相关的日志
+    /var/log/maillog 邮件服务器相关的日志文件
+    /var/log/cron  定期执行任务相关的日志文件
+    /var/log/boot.log  系统启动相关的消息记录
+## 2 系统日志文件
+ * 系统日志优先级emerg、alert、crit、err、warning、notice、info、debug
+ * 系统日志文件有rsyslog服务维护，/etc/rsyslog.conf /etc/rsyslog.d/\*conf
+ * 日志文件通过logrotate实用工具“轮转”，防止/var/log文件系统填满，cron作业每日运行一次logrotate程序
+ * logger命令：发送消息到rsyslog服务 logger -p user.debug "Debug Message Test"
+## 3 systemd日志
+ * systemd日志默认存储在/run/log
+ * journalctl查找事件 
+ * 永久保存systemd日志：从/run/log/journal迁移到/var/log/journal
+    * mkdir /var/log/journal
+    * chown root:systemd-journal /var/log/journal
+    * chmod 2755 /var/log/journal
+    * killall -USER1 systemd-journald 或重启系统即可生效
+#####
+    journalctl -n  显示最后10个日志条目
+    journalctl -n  5 最后5个日志条目
+    journalctl -p err 输出过滤为仅列出err或以上级别的日志条目
+    journalctl -f  显示最后10行
+    journalctl --since|until YYYY-MM-DD hh:mm:ss|yesterday|today|tomorrow
+    journalctl -b 显示系统上一次启动以来的日志消息
+    
 # 安全管理
 
 # 脚本
