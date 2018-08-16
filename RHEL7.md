@@ -290,7 +290,26 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 
 # 网络管理
 ## 1 基础概念
-
+ * IPv4地址(网络部分+主机部分)、IPv4路由、DNS、静态网络配置、DHCP
+######
+    CIDR表示法：192.168.1.107/24
+    主机地址 192.168.1.107
+    网络前缀（子网掩码） /24 (255.255.255.0)
+    网络地址 192.168.1.0  子网中可能达到的最低地址
+    广播地址 192.168.1.255 子网中可能达到的最高地址
+    ip addr
+    ip -s link show eth0  显示eth0接口信息
+    ip route
+    tracepath ip|hostname
+    ping -c3 ip|hostname    
+ * 特殊地址localhost：127.0.0.1
+ * NetworkManager 是监控和管理网络设置的守护进程，命令行和图形工具与之通信；
+ * 配置：/etc/sysconfig/network-scripts 命令：nmcli 图形化工具：nm-connection-editor
+######
+    nmcli con show [--active] 显示连接的列表
+ * hostnamectl set-hostname yhost; hostname   /etc/hosts   静态主机名/etc/hostname
+ * DNS配置/etc/resolv.conf
+ 
 ## 2 firewalld服务限制网络通信
 
 ## 3 DNS管理
