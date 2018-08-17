@@ -190,7 +190,6 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
    * 服务单元.service 代表系统服务
    * 套接字单元.socket 代表进程间通信（IPS）套接字
    * 路径单元.path 用于将服务的激活推迟到特定文件系统更改发生之后，如打印服务
-   
 ######    
     yum -y install service
     systemctl   >列出所有系统服务
@@ -205,6 +204,22 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     systemctl disable service
     systemctl stop service
     systemctl mask/unmask network >屏蔽服务
+ * systemd目标：一组在启动后达到所需状态的systemd单元
+   * graphical.target 支持多用户、图形和基于文本的登录
+   * multi-user.target 支持多用户、基于文本的登录
+   * rescue.target  
+   * emergency.target
+######
+    systemctl list-unit-files --type=target --all
+    systemctl isolate multi-user.target 切换到其他目标
+    systemctl get-default  查看当前目标
+    systemctl set-default graphical.target  设置默认启动目标
+   * 启动过程中选择其他目标
+      * 启动时，任意键中断启动加载器
+      * e编辑启动条目
+      * 光标移动至内核命令行（linux16开头的行）
+      * 附加systemd.unit=desired.targe
+      * Ctrl+x 使用更改进行启动
 ## 2 chronyd服务
  *  网络时间协议NTP是计算机通过互联网提供并获取正确时间信息的一种标准方法
  * timedatectl命令简要显示当前的时间相关系统设置
@@ -361,7 +376,32 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     journalctl -f  显示最后10行
     journalctl --since|until YYYY-MM-DD hh:mm:ss|yesterday|today|tomorrow
     journalctl -b 显示系统上一次启动以来的日志消息
-    
+
+## 4 RHEL启动过程
+    1、接通电源，系统固件运行开机自检（POST），并开始初始化部分硬件
+    2、系统固件搜索可启动设备
+    3、系统固件会从磁盘读取启动加载器，然后将系统控制权交给启动加载器
+    4、启动加载器从磁盘加载其配置，然后向用户显示用于启动的可能配置的菜单
+    5、用户做出选择后，启动加载器会从磁盘加载配置的内核及initramfs，并将它们置于内存中
+    6、启动加载器将系统控制权交给内核
+    7、对于内核可在initramfs中找到驱动程序的所有硬件，内核会初始化这些硬件，作为PID 1 从initramfs执行/sbin/init
+    8、initramfs中的systemd实例会执行initrd.target目标的所有单元
+    9、内核root文件系统从initramfs root文件系统切换为之前挂载于/sysroot上的系统root文件系统
+    10、systemd会查找从内核命令行传递或系统中配置的默认目标，然后启动单元，以符合该目标的配置，从而自动解决单元间的依赖关系
+ * systemctl poweroff 停止所有运行的服务，卸载所有文件系统，然后关闭系统   --RHEL7中 poweroff命令只是一个符号链接
+ * systemctl reboot 停止所有运行的服务，卸载所有文件系统，然后重新启动系统  --RHEL7中 reboot命令只是一个符号链接
+ * 恢复root密码
+   * 重启系统
+   * 任意键中断启动加载器
+   * e编辑启动条目
+   * 光标移动至内核命令行（linux16开头的行）
+   * 附加rd.break(就在从initramfs向实际系统移交控制权之前，该操作会中断)
+   * Ctrl+x 使用更改进行启动
+   * 读写形式挂载：mount -o remount.rw /sysroot
+   * 切换为chroot存放位置：chroot /sysroot
+   * 设置新的root密码：passwd root
+   * 确保所有未标记的文件在启动过程中都会重新获得标记：touch /.autorelabel
+   * 键入exit两次，第一次退出chroot存放位置，第二次退出initramfs调试shell
 # 安全管理
 
 # 脚本
