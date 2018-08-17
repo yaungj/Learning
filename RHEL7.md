@@ -335,7 +335,18 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
  * DNS配置/etc/resolv.conf
  
 ## 2 firewalld服务限制网络通信
-
+ * linux内核包含一个强大的网络过滤子系统netfilter，允许内核模块通过遍历系统的每个数据包进行检查
+ * firewalld守护进程 与netfilter交互，可配置和监控系统防火墙规则的系统守护进程
+   * 预定义区域 默认public   internal、trusted、home、work等
+   * 预定义服务 可用于方便地允许特定网络服务的流量通过防火墙。ssh-22/tcp等
+ * 防火墙配置
+   * 配置文件/etc/firewalld/
+   * 图形化工具firewall-config
+   * 命令行 firewall-cmd
+######
+    firewall-cmd --set-default-zone=dmz
+    firewall-cmd  --permanent --zone=internal --add-source=192.168.0.0/24
+    firewall-cmd --reload
 ## 3 DNS管理
 
 ## 4 链路聚合和桥接
