@@ -348,7 +348,28 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     firewall-cmd  --permanent --zone=internal --add-source=192.168.0.0/24
     firewall-cmd --reload
 ## 3 DNS管理
-
+ * 域名系统DNS：充当互联网主机和资源的目录，目录中的信息将网络名称映射到数据。以root域.开始。
+ * 域domain：资源记录的集合。顶级域TLD：按主题.org\.com\.edu..按国家.cn\.us\.uk...
+ * 子域subdomain：作为另一域的子树的域，lab.example.com为example.com的子域
+ * 区域zone：特定名称服务器直接负责或对其具有权威的某个域的组成部分
+ * DNS查询分析：先向/etc/resolv.conf中列出的服务器依次发送查询。host、dig命令可用于手动查询
+ * DNS资源记录：用于指定有关该区域中某个特定名称或者对象的信息。
+ * DNS资源记录组成：资源名称、TTL（记录生存时间）、Class（类）、type（A、AAAA、CNAME等等）、data（记录存储的数据）
+    * A IPv4记录    主机名映射到IPv4
+    * AAAA IPv6记录  主机名映射到IPv6
+    * CNAME 规范名称记录  记录别名转换为另一个别名
+    * PTR（指针）记录   将IPv4或IPv6映射到主机名
+    * NS（名称服务器）记录 将域名映射到DNS名称服务器
+    * ...
+########
+    host -v -t A example.com
+    example.com. 86400 IN A 172.25.254.254
+    host -v -t AAAA example.com
+    example.com. 86400 IN AAAA 2001:503:ba3e::2:30
+ * 缓存名称服务器：在本地缓存中存储DNS查询结果，并在TTL到期后从缓存中删除资源记录，用以提高DNS性能。
+ * DNSSEC验证：鉴于UDP的无状态性质，DNS事务很容易被欺骗和篡改
+ * 使用unbound配置安全缓存名称服务器
+ 
 ## 4 链路聚合和桥接
 
 ## 5 IPv6网络管理
