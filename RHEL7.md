@@ -245,7 +245,10 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
  * SSH服务配置/etc/ssh/sshd_config-限制ssh登录：禁止root用户使用ssh登录、禁止使用ssh进行密码身份验证等
  
 ## 4 电子邮件服务
-
+ * 电子邮件传输：邮件客户端与传出邮件服务器进行通信（通过SMTP协议），后者帮助将该邮件中继到其最终目标。
+ * 通常使用/usr/sbin/sendmail的标准程序（RHEL7中由Postfix提供）发送电子邮件
+ * Postfix是一个功能强大且易于配置的邮件服务器，主配置文件/etc/postfix/main.cf
+ * Postfix空客户端配置
 ## 5 Apache HTTPD Web服务
 
 ## 6 数据库服务
