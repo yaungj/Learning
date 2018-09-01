@@ -420,7 +420,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     nmcli con add type bridge-slave con-name bro-port1 ifname eth1 master br0 将接口eth1连接到br0网桥，持久存储ifcfg-bro-port1
     nmcli con add type bridge-slave con-name bro-port2 ifname eth2 master br0 将接口eth2连接到br0网桥
     brctl show  显示网桥以及连接到该网桥的接口列表
- * 附:集线器、交换机、路由器、网桥、网关之间的区别[1](http://www.cnblogs.com/imapla/archive/2013/03/12/2955931.html)[2](https://blog.csdn.net/gongda2014306/article/details/52442981)
+ * 附:集线器、交换机、路由器、网桥、网关之间的区别[\[1\]](http://www.cnblogs.com/imapla/archive/2013/03/12/2955931.html)  [\[2\]](https://blog.csdn.net/gongda2014306/article/details/52442981)
      * 中继器：信号在传输过程中会不断衰减，为了不让信号衰减对通信产生影响，产生了中继器：仅做放大信号用，把信号传导偏远的地方。
      * 集线器HUB：集线器实际就是一种多端口的中继器。集线器一般有4、8、16、24、32等数量的RJ45接口，通过这些接口，集线器便能为相应数量的电脑完成“中继”功能（将已经衰减得不完整的信号经过整理，重新产生出完整的信号再继续传送）。由于它在网络中处于一种“中心”位置，因此集线器也叫做“HUB” --“傻瓜”邮递员
      * 交换机Switch：交换机也叫交换式集线器，它通过对信息进行重新生成，并经过内部处理后转发至指定端口，具备自动寻址能力和交换作用，由于交换机根据所传递信息包的目的地址，将每一信息包独立地从源端口送至目的端口，避免了和其他端口发生碰撞。--“聪明”邮递员
