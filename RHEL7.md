@@ -440,6 +440,12 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
       * 2）传入包接口与过滤器匹配
       * 3）默认区域
  * 管理firewalld：1)命令行firewall-cmd 2)图形化工具firewall-config 3)配置文件/etc/firewalld
+#####
+    firewall-cmd  --set-default-zone=dmz 配置默认情况下通过dmz区域来路由所有流量
+    firewall-cmd --permanent --zone=work --add-source=172.25.X.10/24 配置通过work区域来路由所有来自172.25.X.10/24的所有流量
+    firewall-cmd --permanent --zone=work --add-service=https 为work区域打开传入https的流量
+    firewall-cmd --permanent --zone=work --list-all  检查work区域防火墙配置
+    curl -k https://serverX.example.com  -k选项跳过证书验证
  * 直接规则：除了firewalld提供的标准规则
 #####
     firewall-cmd --direct --permanent --add-chain ****
@@ -452,12 +458,9 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     firewall-cmd --permanent --zone=<ZONE> --add-masquerade  --使用常规firewalld命令实现区域配置伪装
     firewall-cmd --permanent --zone=<ZONE> --add-rich-rule='rule family=ipv4 source address=192.168.0.0/24 masquerade' --使用富规则实现伪装
 ```
-```
     firewall-cmd --permanent --zone=work --add-rich-rule='rule family=ipv4 source address=192.168.0.0/24 forward-port port=80 protocol=tcp to-port=8080'  --使用富规则实现：将来自work区域的192.168.0.0/24且传入到端口80/TCP的流量转发到防火墙计算机自身上面的8080/TCP
 ```
-```
     示例：启动web服务器，使得只有desktopX（172.25.X.10/32）能进行连接，并对连接进行记录，将记录限制为每秒最多3条，记录均以“NEW HTTP”作为前缀
-```
 ```
     yum install httpd
     systemctl start httpd.service
@@ -466,7 +469,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     firewall-cmd --reload
     tail -f /var/log/messages
     curl http://serverX.example.com
-    
+```
       
 #### 2 SELinux配置
  * SELinux端口标记：不仅仅进行文件和进程标记，还严格实施网络流量，SELinux用来控制网络流量的其中一种方法是标记网络端口。当某个进程希望监听端口时，SELinux将检查是否允许与该进程相关联的标签 绑定 该端口标签。可以阻止恶意服务控制本应由其他网络服务使用的端口。
