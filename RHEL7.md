@@ -432,8 +432,50 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
      * 路由器(Router)：交换机工作在数据链路层次。如果现在A节点向未知节点B通信，如果A和B之间通过N（很大）个交换机才连接在一起，那么只用交换机来实现，那么A将数据包发送之后，在到达所有其他端口，如果其他端口不能识别，那么都将进行转发，这样，最终也可以到达B，但是势必产生很多的冗余数据通信。于是，我们有了路由器。
      * 网关（Gateway）：网关能在不同协议间移动数据，而路由器（router）是在不同网络间移动数据，相当于传统所说的IP网关（IP gateway）
     
-## 6 网络端口安全性
-
+## 6 网络端口安全性（防火墙和SELinux）
+#### 1 防火墙配置
+ * firewalld是RHEL7中用于管理主机级别的防火墙的默认方法，通过firewalld.service systemd服务来启动
+   * firewalld对传入流量处理的标准规则：
+      * 1）传入包源地址匹配
+      * 2）传入包接口与过滤器匹配
+      * 3）默认区域
+ * 管理firewalld：1)命令行firewall-cmd 2)图形化工具firewall-config 3)配置文件/etc/firewalld
+ * 直接规则：除了firewalld提供的标准规则
+#####
+    firewall-cmd --direct --permanent --add-chain ****
+ * 富规则：firewalld基本语法之外的可自定义的防火墙规则
+ * 使用富规则进行记录到syslog：log  \[prefix=""\] \[level=""\] \[limit value=""\]
+ * 网络地址转换NAT的两种形式：伪装、端口转发
+    * 伪装：内网ip和外网ip转换，为内部网络提供Internet访问
+    * 端口转发：将单个端口的流量转发到同计算机的不同端口或者不同计算机的端口
+######
+    firewall-cmd --permanent --zone=<ZONE> --add-masquerade  --使用常规firewalld命令实现区域配置伪装
+    firewall-cmd --permanent --zone=<ZONE> --add-rich-rule='rule family=ipv4 source address=192.168.0.0/24 masquerade' --使用富规则实现伪装
+    ```
+    ```
+    firewall-cmd --permanent --zone=work --add-rich-rule='rule family=ipv4 source address=192.168.0.0/24 forward-port port=80 protocol=tcp to-port=8080'  --使用富规则实现：将来自work区域的192.168.0.0/24且传入到端口80/TCP的流量转发到防火墙计算机自身上面的8080/TCP
+    ```
+    ```
+    示例：启动web服务器，使得只有desktopX（172.25.X.10/32）能进行连接，并对连接进行记录，将记录限制为每秒最多3条，记录均以“NEW HTTP”作为前缀
+    ```
+    ```
+    yum install httpd
+    systemctl start httpd.service
+    systemctl enable httpd.service
+    firewall-cmd --permanent --add-rich-rule='rule family=ipv4 source address=172.25.X.10/32 service name="http" log level=notice prefix="NEW HTTP" limit value="3/s" accept'
+    firewall-cmd --reload
+    tail -f /var/log/messages
+    curl http://serverX.example.com
+    
+      
+#### 2 SELinux配置
+ * SELinux端口标记：不仅仅进行文件和进程标记，还严格实施网络流量，SELinux用来控制网络流量的其中一种方法是标记网络端口。当某个进程希望监听端口时，SELinux将检查是否允许与该进程相关联的标签 绑定 该端口标签。可以阻止恶意服务控制本应由其他网络服务使用的端口。
+#####
+    semanage port -l 获取所有当前端口标签分配情况   --图形化工具system-config-selinux
+    semanage port -a -t gopher_port_t -p tcp 71 允许gopher服务侦听端口71/tcp --向现有端口标签（类型）中添加端口71
+    semanage port -d -t gopher_port_t -p tcp 71 删除端口71/tcp与gopher_port_t的绑定
+    semanage port -m -t http_port_t -p tcp 71  将端口71/tcp从gopher_port_t修改为http_port_t
+    
 
 # 日志管理
 ## 1 RHEL7系统日志架构
