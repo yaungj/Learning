@@ -324,6 +324,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
  * 特殊地址localhost：127.0.0.1
  * NetworkManager 是监控和管理网络设置的守护进程，命令行nmcli和图形工具与之通信；
  * 配置：/etc/sysconfig/network-scripts/ifcfg-<name> 命令：nmcli 图形化工具：nm-connection-editor
+    
 ######
     nmcli con show [--active] 显示连接的列表
     nmcli con add con-name "default" type ethernet ifname eth0
@@ -365,7 +366,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     * PTR（指针）记录   将IPv4或IPv6映射到主机名
     * NS（名称服务器）记录 将域名映射到DNS名称服务器
     * ...
-########
+#####
     host -v -t A example.com
     example.com. 86400 IN A 172.25.254.254
     host -v -t AAAA example.com
@@ -376,8 +377,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 
 ## 4 IPv6网络管理
  * IPv4联网配置
-    ```
-    ```
+####
     nmcli dev status  显示所有网络设备状态
     nmcli con show   显示所有连接列表
     nmcli con add con-name eno2 type ethernet ifname eno2 ip4 192.168.0.5/24 gw4 192.168.0.254  添加网络连接
@@ -387,9 +387,9 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     nmcli dev dis eth0 断开与网络接口设备的连接并将其关闭
     ip addr show eno2
     静态连接属性会持久保存：/etc/sysconfig/network-scripts/ifcfg-<name> 
- * IPv6地址
-  * 16*8组=128位
- * IPv6联网
+``` ```
+* IPv6地址  16\*8组=128位
+* IPv6联网
     
 ## 5 链路聚合和桥接
  * 网络组：是将多个网卡聚合在一起方法，从而实现冗错和提高吞吐量  --即链路聚合
@@ -397,8 +397,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
  * 链路聚合的优点：
    * 1）增加网络带宽：链路聚合可以将多个链路捆绑成为一个逻辑链路，捆绑后的链路带宽是每个独立链路的带宽总和。
    * 2）提高网络连接的可靠性：链路聚合中的多个链路互为备份，当有一条链路断开，流量会自动在剩下链路间重新分配。
- ```
- ```
+####
     nmcli con add type team con-name team0 ifname team0 config '{"runner":{"name":"loadbalance"}}'  1）创建组接口
            method : broadcast\roundrobin\activebackup\loadbalance
     nmcli con mod team0 ipv4.addresses 1.2.3.4/24  2）确定组接口的IPv4/IPv6属性
@@ -413,14 +412,16 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
       * 1.网桥是第二层的设备，而路由器是第三层的设备；
       * 2.网桥只能连接两个相同的网络，而路由器可以连接不同网络；网桥在信息保密方面相对较好，它连接的是两个对等的网络。
       * 3.网桥不隔离广播，而路由器可以隔离广播。
- * 配置软件网桥--桥接 /etc/sysconfig/network-scripts/ifcfg-<name> 中TYPE=Bridge
- ```
- ```
+   * 与中继器相比，使用网桥进行互连克服了物理限制，这意味着构成LAN的数据站总数和网段数很容易扩充。
+   * 配置软件网桥--桥接 /etc/sysconfig/network-scripts/ifcfg-<name> 中TYPE=Bridge
+    
+#####
     nmcli con add type bridge con-name br0 ifname br0  创建网桥br0
     nmcli con add type bridge-slave con-name bro-port1 ifname eth1 master br0 将接口eth1连接到br0网桥，持久存储ifcfg-bro-port1
     nmcli con add type bridge-slave con-name bro-port2 ifname eth2 master br0 将接口eth2连接到br0网桥
     brctl show  显示网桥以及连接到该网桥的接口列表
- * 附:[集线器、交换机、路由器、网桥、网关之间的区别](http://www.cnblogs.com/imapla/archive/2013/03/12/2955931.html)
+ * 附:集线器、交换机、路由器、网桥、网关之间的区别[1](http://www.cnblogs.com/imapla/archive/2013/03/12/2955931.html)[2](https://blog.csdn.net/gongda2014306/article/details/52442981)
+     * 中继器：信号在传输过程中会不断衰减，为了不让信号衰减对通信产生影响，产生了中继器：仅做放大信号用，把信号传导偏远的地方。
      * 集线器HUB：集线器实际就是一种多端口的中继器。集线器一般有4、8、16、24、32等数量的RJ45接口，通过这些接口，集线器便能为相应数量的电脑完成“中继”功能（将已经衰减得不完整的信号经过整理，重新产生出完整的信号再继续传送）。由于它在网络中处于一种“中心”位置，因此集线器也叫做“HUB” --“傻瓜”邮递员
      * 交换机Switch：交换机也叫交换式集线器，它通过对信息进行重新生成，并经过内部处理后转发至指定端口，具备自动寻址能力和交换作用，由于交换机根据所传递信息包的目的地址，将每一信息包独立地从源端口送至目的端口，避免了和其他端口发生碰撞。--“聪明”邮递员
      * 路由器(Router)：网络中进行网间连接的关键设备。一方面能够跨越不同的物理网络类型（DDN、FDDI、以太网等等），另一方面在逻辑上将整个互连网络分割成逻辑上独立的网络单位，使网络具有一定的逻辑结构
