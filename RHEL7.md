@@ -451,14 +451,14 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 ######
     firewall-cmd --permanent --zone=<ZONE> --add-masquerade  --使用常规firewalld命令实现区域配置伪装
     firewall-cmd --permanent --zone=<ZONE> --add-rich-rule='rule family=ipv4 source address=192.168.0.0/24 masquerade' --使用富规则实现伪装
-    ```
-    ```
+```
+```
     firewall-cmd --permanent --zone=work --add-rich-rule='rule family=ipv4 source address=192.168.0.0/24 forward-port port=80 protocol=tcp to-port=8080'  --使用富规则实现：将来自work区域的192.168.0.0/24且传入到端口80/TCP的流量转发到防火墙计算机自身上面的8080/TCP
-    ```
-    ```
+```
+```
     示例：启动web服务器，使得只有desktopX（172.25.X.10/32）能进行连接，并对连接进行记录，将记录限制为每秒最多3条，记录均以“NEW HTTP”作为前缀
-    ```
-    ```
+```
+```
     yum install httpd
     systemctl start httpd.service
     systemctl enable httpd.service
