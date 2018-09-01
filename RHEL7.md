@@ -249,6 +249,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
  * 通常使用/usr/sbin/sendmail的标准程序（RHEL7中由Postfix提供）发送电子邮件
  * Postfix是一个功能强大且易于配置的邮件服务器，主配置文件/etc/postfix/main.cf
  * Postfix空客户端配置
+ 
 ## 5 Apache HTTPD Web服务
 
 ## 6 数据库服务
@@ -321,7 +322,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     tracepath ip|hostname
     ping -c3 ip|hostname    
  * 特殊地址localhost：127.0.0.1
- * NetworkManager 是监控和管理网络设置的守护进程，命令行和图形工具与之通信；
+ * NetworkManager 是监控和管理网络设置的守护进程，命令行nmcli和图形工具与之通信；
  * 配置：/etc/sysconfig/network-scripts/ifcfg-<name> 命令：nmcli 图形化工具：nm-connection-editor
 ######
     nmcli con show [--active] 显示连接的列表
@@ -372,11 +373,54 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
  * 缓存名称服务器：在本地缓存中存储DNS查询结果，并在TTL到期后从缓存中删除资源记录，用以提高DNS性能。
  * DNSSEC验证：鉴于UDP的无状态性质，DNS事务很容易被欺骗和篡改
  * 使用unbound配置安全缓存名称服务器
+
+## 4 IPv6网络管理
+ * IPv4联网配置
+    ```
+    ```
+    nmcli dev status  显示所有网络设备状态
+    nmcli con show   显示所有连接列表
+    nmcli con add con-name eno2 type ethernet ifname eno2 ip4 192.168.0.5/24 gw4 192.168.0.254  添加网络连接
+    nmcli up eno2 激活连接
+    nmcli con reload 告知NetworkManager 重新读取配置文件
+    nmcli con del eno2  删除连接及其配置文件
+    nmcli dev dis eth0 断开与网络接口设备的连接并将其关闭
+    ip addr show eno2
+    静态连接属性会持久保存：/etc/sysconfig/network-scripts/ifcfg-<name> 
+ * IPv6地址
+  * 16*8组=128位
+ * IPv6联网
+    
+## 5 链路聚合和桥接
+ * 网络组：是将多个网卡聚合在一起方法，从而实现冗错和提高吞吐量  --即链路聚合
+ * 链路聚合：将多个物理端口捆绑在一起，成为一个逻辑端口，以实现出/ 入流量在各成员端口中的负荷分担，交换机根据用户配置的端口负荷分担策略决定报文从哪一个成员端口发送到对端的交换机。当交换机检测到其中一个成员端口的链路发生故障时，就停止在此端口上发送报文，并根据负荷分担策略在剩下链路中重新计算报文发送的端口，故障端口恢复后再次重新计算报文发送端口
+ * 链路聚合的优点：
+   * 1）增加网络带宽：链路聚合可以将多个链路捆绑成为一个逻辑链路，捆绑后的链路带宽是每个独立链路的带宽总和。
+   * 2）提高网络连接的可靠性：链路聚合中的多个链路互为备份，当有一条链路断开，流量会自动在剩下链路间重新分配。
+ ```
+ ```
+    nmcli con add type team con-name team0 ifname team0 config '{"runner":{"name":"loadbalance"}}'  1）创建组接口
+           method : broadcast\roundrobin\activebackup\loadbalance
+    nmcli con mod team0 ipv4.addresses 1.2.3.4/24  2）确定组接口的IPv4/IPv6属性
+    nmcli con mod team0 ipv4.method manual
+    nmcli con add type team-slave ifname eth1 master team0  3）分配端口接口
+    nmcli con add type team-slave ifname eth2 master team0 con-name team0-eth2
+    nmcli con up team0  4）启动组接口和端口接口
+    nmcli dev dis eth2  关闭组接口和端口接口
+    teamctl team0 state 显示网络合作状态
+ * 网桥：在链路层实现局域网互连的存储转发设备。网桥从一个局域网接收MAC帧，拆封、校对、校验之后，按另一个局域网的格式重新组装，发往它的物理层。由于网桥是链路层设备，因此不处理数据链路层以上层次协议所加的报头，基于MAC地址在网络之间转发流量。
+   *  网桥和路由器的区别:
+     * 1.网桥是第二层的设备，而路由器是第三层的设备；
+     * 2.网桥只能连接两个相同的网络，而路由器可以连接不同网络；
+     * 3.网桥不隔离广播，而路由器可以隔离广播。
+ * 配置软件网桥--桥接 /etc/sysconfig/network-scripts/ifcfg-<name> 中TYPE=Bridge
+ ```
+ ```
+    nmcli con add type bridge con-name br0 ifname br0  创建网桥br0
+    nmcli con add type bridge-slave con-name bro-port1 ifname eth1 master br0 将接口eth1连接到br0网桥，持久存储ifcfg-bro-port1
+    nmcli con add type bridge-slave con-name bro-port2 ifname eth2 master br0 将接口eth2连接到br0网桥
+    brctl show  显示网桥以及连接到该网桥的接口列表
  
-## 4 链路聚合和桥接
-
-## 5 IPv6网络管理
-
 ## 6 网络端口安全性
 
 
