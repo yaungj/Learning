@@ -293,7 +293,14 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     修改进程的nice级别 renice -n -7 $(pgrep startup.sh)
  
 ## 3 进程监控管理
-  * 控制作业 &后台运行  fg %作业ID（jobs命令查看） 将后台作业转至前台
+  * 控制作业 后台运行:&   将后台作业转至前台:fg %后台作业ID（jobs命令查看）
+#####
+    root@yhost:/root>sleep 1000 &
+    [1] 22469
+    root@yhost:/root>jobs
+    [1]+  Running         sleep 1000 &
+    root@yhost:/root>fg %1
+    sleep 1000
   * 进程管理信号：HUP挂起、INT键盘中断Ctrl+c、QUIT键盘退出Ctrl+\、TSTP键盘停止Ctrl+z、KILL中断、TERM（可被拦截、友好的方式）、CONT继续、STOP
   * kill -l指定信号中断 PID
   * killall 命令名称或匹配的进程
