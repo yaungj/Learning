@@ -418,7 +418,8 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
     nmcli con add type bridge-slave con-name bro-port1 ifname eth1 master br0 将接口eth1连接到br0网桥，持久存储ifcfg-bro-port1
     nmcli con add type bridge-slave con-name bro-port2 ifname eth2 master br0 将接口eth2连接到br0网桥
     brctl show  显示网桥以及连接到该网桥的接口列表
- * 附:集线器、交换机、路由器、网桥、网关之间的区别[\[1\]](http://www.cnblogs.com/imapla/archive/2013/03/12/2955931.html)  [\[2\]](https://blog.csdn.net/gongda2014306/article/details/52442981)
+ * 附:集线器、交换机、路由器、网桥、网关之间的区别[\[1\]](http://www.cnblogs.com/imapla/archive/2013/03/12/2955931.html)  [\[2\]](https://blog.csdn.net/gongda2014306/article/details/52442981)  
+#####
 | 应用层 | 应用网关 |
 |:------ |:------ |
 | 传输层     | 传输网关      |
