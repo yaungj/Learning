@@ -10,7 +10,6 @@
 * [脚本编写](#脚本编写)
 * [Linux容器和Docker](#Linux容器和Docker)
 
-
 # 文件管理
 linux中具有单个根（/目录）的目录树结构，层次结构可随时扩展，只需添加包含支持的文件系统的新磁盘或分区（存储设备划分为更小的块），即可在文件系统树的任何位置增加磁盘空间。
 * 文件系统：接口，物理存储设备--电子文档、文件夹
@@ -557,4 +556,4 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 
 
 * 帮助文档pinfo man /usr/share/doc  
-* [centos和redhat的区别](https://blog.csdn.net/fd8559350/article/details/52604427)
+* [centos和redhat的区别](https://blog.csdn.net/fd8559350/article/details/52604427)       |`[回到顶部](#Table of Contents)`|[回到顶部](#Table of Contents)|
