@@ -345,20 +345,8 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
  * hostnamectl set-hostname yhost; hostname   /etc/hosts   静态主机名/etc/hostname
  * DNS配置/etc/resolv.conf
  
-## 2 firewalld服务限制网络通信
- * linux内核包含一个强大的网络过滤子系统netfilter，允许内核模块通过遍历系统的每个数据包进行检查
- * firewalld守护进程 与netfilter交互，可配置和监控系统防火墙规则的系统守护进程
-   * 预定义区域 默认public   internal、trusted、home、work等
-   * 预定义服务 可用于方便地允许特定网络服务的流量通过防火墙。ssh-22/tcp等
- * 防火墙配置
-   * 配置文件/etc/firewalld/
-   * 图形化工具firewall-config
-   * 命令行 firewall-cmd
-######
-    firewall-cmd --set-default-zone=dmz
-    firewall-cmd  --permanent --zone=internal --add-source=192.168.0.0/24
-    firewall-cmd --reload
-## 3 DNS管理
+
+## 2 DNS管理
  * 域名系统DNS：充当互联网主机和资源的目录，目录中的信息将网络名称映射到数据。以root域.开始。
  * 域domain：资源记录的集合。顶级域TLD：按主题.org\.com\.edu..按国家.cn\.us\.uk...
  * 子域subdomain：作为另一域的子树的域，lab.example.com为example.com的子域
@@ -381,7 +369,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
  * DNSSEC验证：鉴于UDP的无状态性质，DNS事务很容易被欺骗和篡改
  * 使用unbound配置安全缓存名称服务器
 
-## 4 IPv6网络管理
+## 3 IPv6网络管理
  * IPv4联网配置
 ####
     nmcli dev status  显示所有网络设备状态
@@ -396,7 +384,7 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
 * IPv6地址  16\*8组=128位
 * IPv6联网
     
-## 5 链路聚合和桥接
+## 4 链路聚合和桥接
  * 网络组：是将多个网卡聚合在一起方法，从而实现冗错和提高吞吐量  --即链路聚合
  * **链路聚合**：将多个物理端口捆绑在一起，成为一个逻辑端口，以实现出/ 入流量在各成员端口中的负荷分担，交换机根据用户配置的端口负荷分担策略决定报文从哪一个成员端口发送到对端的交换机。当交换机检测到其中一个成员端口的链路发生故障时，就停止在此端口上发送报文，并根据负荷分担策略在剩下链路中重新计算报文发送的端口，故障端口恢复后再次重新计算报文发送端口
  * 链路聚合的优点：
@@ -441,14 +429,25 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
      * **路由器Router**：交换机工作在数据链路层次。如果现在A节点向未知节点B通信，如果A和B之间通过N（很大）个交换机才连接在一起，那么只用交换机来实现，那么A将数据包发送之后，在到达所有其他端口，如果其他端口不能识别，那么都将进行转发，这样，最终也可以到达B，但是势必产生很多的冗余数据通信。于是，我们有了路由器。
      * **网关Gateway**：网关能在不同协议间移动数据，而路由器（router）是在不同网络间移动数据，相当于传统所说的IP网关（IP gateway）
     
-## 6 网络端口安全性（防火墙和SELinux）
+## 5 网络端口安全性（防火墙和SELinux）
 #### 1 防火墙配置
- * firewalld是RHEL7中用于管理主机级别的防火墙的默认方法，通过firewalld.service systemd服务来启动
+ * firewalld是RHEL7中用于管理主机级别的防火墙的默认方法，通过firewalld.service systemd服务来启动,firewalld服务限制网络通信
+ * linux内核包含一个强大的网络过滤子系统netfilter，允许内核模块通过遍历系统的每个数据包进行检查
+ * firewalld守护进程 与netfilter交互，可配置和监控系统防火墙规则的系统守护进程
+   * 预定义区域 默认public   internal、trusted、home、work等
+   * 预定义服务 可用于方便地允许特定网络服务的流量通过防火墙。ssh-22/tcp等
    * firewalld对传入流量处理的标准规则：
       * 1）传入包源地址匹配
       * 2）传入包接口与过滤器匹配
       * 3）默认区域
- * 管理firewalld：1)命令行firewall-cmd 2)图形化工具firewall-config 3)配置文件/etc/firewalld
+ * 防火墙配置-管理firewalld
+   * 配置文件/etc/firewalld/
+   * 图形化工具firewall-config
+   * 命令行 firewall-cmd
+######
+    firewall-cmd --set-default-zone=dmz
+    firewall-cmd  --permanent --zone=internal --add-source=192.168.0.0/24
+    firewall-cmd --reload
 #####
     firewall-cmd  --set-default-zone=dmz 配置默认情况下通过dmz区域来路由所有流量
     firewall-cmd --permanent --zone=work --add-source=172.25.X.10/24 配置通过work区域来路由所有来自172.25.X.10/24的所有流量
