@@ -73,3 +73,9 @@ trusted-host=pypi.douban.com
     package = raw_input("Please input the package which you want to install!\n")
     command = "pip install %s -i http://pypi.mirrors.ustc.edu.cn/simple --trusted-host pypi.mirrors.ustc.edu.cn" % package
     os.system(command)
+
+# 重新编译python环境
+    tar Jxvf  Python-3.5.0.tar.xz
+    cd Python-3.5.0
+    ./configure --prefix=/usr/local/python3
+    make && make i
