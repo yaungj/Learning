@@ -79,3 +79,14 @@ trusted-host=pypi.douban.com
     cd Python-3.5.0
     ./configure --prefix=/usr/local/python3
     make && make i
+
+# 查看yum安装的软件目录
+ * 先查出其对应的rpm包名
+ ```rpm -qa|grep php-fpm ```
+ * 得到如下结果：
+```[root]# rpm -qa|grep php-fpm 
+    php-fpm-5.6.17-1.el6.remi.x86_64 
+    php71-php-fpm-7.1.2-1.el6.remi.x86_64
+```
+ * 然后执行：
+```rpm -ql php71-php-fpm-7.1.2-1.el6.remi.x86_64```
