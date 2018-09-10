@@ -250,6 +250,85 @@ sudo 身份验证：对执行sudo用户自己的密码进行验证  日志记录
  * Postfix空客户端配置
  
 ## 5 Apache HTTPD Web服务
+#### 5.1 web服务器
+  * 是一个用http(s)协议进行交流的守护进程
+  * http以明文形式发送，默认使用端口80/tcp
+  * https轻TLS/SSL加密的版本，默认使用端口443/tcp
+  * Apache httpd基本配置/etc/httpd/conf/httpd.conf，此配置针对通过纯http进入任何主机名的请求来提供/var/www/html的内容
+  * 默认配置中SELinux仅允许httpd绑定到一组特定的端口，semanage port -l|grep '^http_'
+  * 默认SELinux策略都会限制httpd可以读取的上下文，web服务器内容的默认上下文是httpd_sys_content_t，要从标准位置之外的位置中提供内容，则必须使用semanage添加新的上下文规则
+#####
+    yum -y install httpd httpd-manual  安装服务
+    systemctl start httpd.service    1、启动服务
+    systemctl enable httpd.servie    开机自启动
+    firewall-cmd --permanent --add-service=http --add-service=https  2、防火墙配置：打开端口
+    firewall-cmd --reload
+    semanage fcontext -a -t httpd_sys_content_t '/new/location/(/.*)?'  3、添加SELinux上下文规则
+    setfacl -R -m g:webmaster:rwX /var/www/html 4、ACL配置：为开发者组webmaster添加读写访问权限
+##### Ex 配置web服务器
+    ServerX服务器：
+    yum -y install httpd httpd-manual
+    /etc/httpd/conf/httpd.conf配置：  ServerAdmin webmaster@serverX.example.com
+    /var/www/html/index.html编辑显示内容：Hello World ！
+    systemctl start httpd.service 
+    firewall-cmd --permanent --add-service=http --add-service=https  2、防火墙配置：打开端口
+    firewall-cmd --reload
+    DesktopX客户端：
+    浏览器访问`http://serverX.example.com`
+#### 5.2 虚拟主机
+ * 虚拟主机允许单个httpd服务器为多个域提供内容，即一台服务器提供多个网站内容访问
+ * 为方便管理，/etc/httpd/conf.d/site1.conf中<VirtualHost>配置 
+    
+##### Ex 配置虚拟主机
+    配置web服务器，1)默认虚拟主机，提供'/srv/default/www/'中的内容；2）虚拟主机wwwX.example.com提供'/srv\/wwwX\.example.com\/www/'中的内容
+    mkdir -p /srv/{default,wwwX.example.com}/www/
+    编辑默认虚机显示内容/srv/default/www/index.html   'default'
+    编辑wwwX虚机显示内容/srv/wwwX.example.com\/www/index.html   'wwwX'
+    semanage fcontext -a -t httpd_sys_content_t '/srv/default/www/(/.*)?'
+    semanage fcontext -a -t httpd_sys_content_t '/srv/wwwX.example.com\/www/(/.*)?'
+    restorecon -Rv /srv/     重置上下文
+    编辑默认虚机配置/etc/httpd/conf.d/default.conf
+         <VirtualHost _default_:80>
+          DocumentRoot /srv/default/www
+         </VirtualHost>
+
+         <Directory /srv/default/www>
+           Require all granted
+         </Directory> 
+    编辑虚机wwwX配置/etc/httpd/conf.d/wwwX.conf
+         <VirtualHost *:80>
+          ServerName wwwX.example.com
+          ServerAlias wwwX
+          DocumentRoot /srv/wwwX.example.com\/www
+         </VirtualHost>
+
+         <Directory /srv/wwwX.example.com\/www>
+           Require all granted
+         </Directory> 
+    systemctl start httpd.service 
+    firewall-cmd --permanent --add-service=http --add-service=https  打开端口
+    firewall-cmd --reload
+    DesktopX客户端访问：
+        http:\//serverX.example.com 
+        http:\//172.25.X.11     
+        http:\//wwwX.example.com
+        http:\//wwwX
+    显示结果：
+        default
+        default
+        wwwX
+        wwwX
+    
+#### 5.3 配置HTTPS
+ * 传输层安全性（TLS）是用于加密网络通信的方法，是安全套接字层（SSL）的后续版本，TLS允许客户端验证服务器身份，并且允许服务器验证客户身份
+ * 配置TLS证书
+   * 获取证书  'wget *.crt'
+   * 安装Apache httpd扩展模块以支持TLS  'yum -y install mod_ssl'
+   * 使用获取的证书配置虚拟主机为使用TLS  '/etc/httpd/conf.d/wwwX.conf'
+   
+#### 5.4 动态web
+ *
+
 
 ## 6 数据库服务
 
