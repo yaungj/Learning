@@ -427,6 +427,7 @@ WSGI是一个Web服务器，它实现了WSGI协议、uwsgi、http等协议。用
     uWSGI :一种python web server或称为Server/Gateway 。uWSGI类似tornadoweb或者flup，是一种python web server，uWSGI是实现了uwsgi和WSGI两种协议的Web服务器，负责响应python 的web请求。
 
 Nginx接受来自客户端的Http请求发送给uWSGI，uWSGI处理请求并将关键信息传递给web应用(django，flask等)，应用返回Response经由uWSGI发送给Nginx，Nginx再发送给客户端。 
+      <img src="./docs/imgs/lnmp-0001.png"/>
 
 工作原理：
 1. 一般来说，客户端发起的http/https请求首先到达了我们的Web服务器（在这里我们使用Nginx作为我们的服务器）。 
