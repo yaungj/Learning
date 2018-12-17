@@ -7,6 +7,7 @@
 * [JSON](#json)
 * [AJAX](#ajax)
 * [WebService](#webservice)
+* [Nginx](#Nginx)
 * [Python](#python)
 
 # Web发展历程
@@ -362,13 +363,80 @@ UDDI 是一种目录服务，通过它，企业可注册并搜索 Web services�
 服务端的HttpServlet可通过设置特定的HTTP响应头来禁止客户端缓存网页（因为动态更新、含有敏感数据等）。
 
 # 比较HTML、Servlet、JSP（Java Server Page --Servlet的扩展）
-1）静态HTML  --简洁直观
-浏览器--请求访问hello.html--Web服务器--读取hello.html中的数据
-2）Servlet动态生成html页面  --代码繁琐
-浏览器--请求访问helloServlet--Web服务器--运行helloServlet--生成html文档
-3）JSP动态生成html页面 --html文件中加入Java程序片段和JSP标记
-JSP语法、指令、生命周期
+* 1）静态HTML  --简洁直观
+     浏览器--请求访问hello.html--Web服务器--读取hello.html中的数据
+* 2）Servlet动态生成html页面  --代码繁琐
+     浏览器--请求访问helloServlet--Web服务器--运行helloServlet--生成html文档
+* 3）JSP动态生成html页面 --html文件中加入Java程序片段和JSP标记
+     JSP语法、指令、生命周期
 
+# Nginx
+* Nginx是一个http服务器。是一个使用C语言开发的高性能的http服务器及反向代理服务器。Nginx是一款高性能的http 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器。由俄罗斯的程序设计师Igor Sysoev所开发，官方测试nginx能够支支撑5万并发链接，并且cpu、内存等资源消耗却非常低，运行非常稳定。应用场景：反向代理、负载均衡、动态与静态资源的分离的工作。nginx进行转发，即所谓的反向代理。比如jsp直接给tomcat处理，因为nginx并不是servlet容器，没办法处理JSP，而html,js,css这些不需要处理的，直接给nginx进行缓存。
+
+* 工作原理：整个nginx工作时当http请求到来时，由nginx针对nginx.conf配置好的规则，对location进行正则匹配，匹配到相应的正则，进行location内部的处理
+(http://seanlook.com/2015/05/17/nginx-location-rewrite/)里面很详细列出了各种要求的location匹配规则，值得注意的一点是：location匹配遵循最长原则，即满足了之前的匹配规则后，除了遇见^会终止向下继续匹配，其他情况会依次向下搜索，知道找到合适的location匹配规则然后进行处理
+    Nginx在模块功能上分三个模块：
+    Handlers（处理器模块）。此类模块直接处理请求，并进行输出内容和修改headers信息等操作。Handlers处理器模块一般只能有一个。
+    Filters （过滤器模块）。此类模块主要对其他处理器模块输出的内容进行修改操作，最后由Nginx输出。
+    Proxies （代理类模块）。此类模块是Nginx的HTTP Upstream之类的模块，这些模块主要与后端一些服务比如FastCGI等进行交互，实现服务代理和负载均衡等功能。
+
+* Nginx和tomcat的区别
+  * Apache/Nginx 应该叫做「HTTP Server」；而 Tomcat 则是一个「Application Server」(一个「Servlet/JSP」应用的容器)
+  * HTTP Server 关心的是 HTTP 协议层面的传输和访问控制，所以在 Apache/Nginx 上你可以看到代理、负载均衡等功能。客户端通过 HTTP Server 访问服务器上存储的资源（HTML 文件、图片文件等等）。通过 CGI 技术，也可以将处理过的内容通过 HTTP Server 分发，但是一个 HTTP Server 始终只是把服务器上的文件如实的通过 HTTP 协议传输给客户端。
+  * Application Server则是一个应用执行的容器。它首先需要支持开发语言的 Runtime（对于 Tomcat 来说，就是 Java），保证应用能够在应用服务器上正常运行。其次，需要支持应用相关的规范，例如类库、安全方面的特性。对于 Tomcat 来说，就是需要提供 JSP/Sevlet 运行需要的标准类库、Interface 等。为了方便，应用服务器往往也会集成 HTTP Server 的功能，但是不如专业的 HTTP Server 那么强大，所以应用服务器往往是运行在 HTTP Server 的背后，执行应用，将动态的内容转化为静态的内容之后，通过 HTTP Server 分发到客户端。
+
+* 代理服务器的作用
+提高访问速度 
+    由于目标主机返回的数据会存放在代理服务器的硬盘中，因此下一次客户再访问相同的站点数据时，会直接从代理服务器的硬盘中读取，起到了缓存的作用，尤其对于热门网站能明显提高访问速度。
+防火墙作用 
+    由于所有的客户机请求都必须通过代理服务器访问远程站点，因此可以在代理服务器上设限，过滤掉某些不安全信息。同时正向代理中上网者可以隐藏自己的IP,免受攻击。
+突破访问限制 
+    互联网上有许多开发的代理服务器，客户机在访问受限时，可通过不受限的代理服务器访问目标站点，通俗说，我们使用的翻墙浏览器就是利用了代理服务器，可以直接访问外网。
+    
+正向代理：
+A向C借钱，由于一些情况不能直接向C借钱，于是A想了一个办法，他让B去向C借钱，这样B就代替A向C借钱，A就得到了C的钱，C并不知道A的存在，B就充当了A的代理人的角色。	
+反向代理：
+A向B借钱，B没有拿自己的钱，而是悄悄地向C借钱，拿到钱之后再交给A,A以为是B的钱，他并不知道C的存在。 
+	
+正向代理和反向代理的区别
+位置不同 
+	正向代理，架设在客户机和目标主机之间； 
+	反向代理，架设在服务器端；
+代理对象不同 
+	正向代理，代理客户端，服务端不知道实际发起请求的客户端； 
+	反向代理，代理服务端，客户端不知道实际提供服务的服务端	
+正向代理是从客户端的角度出发，服务于特定用户（比如说一个局域网内的客户）以访问非特定的服务；
+反向代理正好与此相反，从服务端的角度出发，服务于非特定用户（通常是所有用户），已访问特定的服务。 	
+正向代理的应用
+    1. 访问原来无法访问的资源 
+    2. 用作缓存，加速访问速度 
+    3. 对客户端访问授权，上网进行认证 
+    4. 代理可以记录用户访问记录（上网行为管理），对外隐藏用户信息
+反向代理的应用
+    1. 保护内网安全 
+    2. 负载均衡 
+    3. 缓存，减少服务器的压力 
+       Nginx作为最近较火的反向代理服务器，安装在目的主机端，主要用于转发客户机请求，后台有多个http服务器提供服务，nginx的功能就是把请求转发给后台的服务器，决定哪台目标主机来处理当前请求。
+
+
+* Nginx+uWSGI+Django
+Django是一个开放源代码的Web应用框架，由Python写成。Django不是一个服务器，只是一个Web的应用框架。
+WSGI是一个Web服务器，它实现了WSGI协议、uwsgi、http等协议。用于连接Web服务器和Web应用框架。
+    wsgi：一种实现python解析的通用接口标准/协议，是一种通用的接口标准或者接口协议，实现了python web程序与服务器之间交互的通用性。 利用它，web.py或bottle或者django等等的python web开发框架，就可以轻松地部署在不同的web server上了；
+    uwsgi:同WSGI一样是一种通信协议。uwsgi协议是一个uWSGI服务器自有的协议，它用于定义传输信息的类型，它与WSGI相比是两样东西。
+    uWSGI :一种python web server或称为Server/Gateway 。uWSGI类似tornadoweb或者flup，是一种python web server，uWSGI是实现了uwsgi和WSGI两种协议的Web服务器，负责响应python 的web请求。
+
+Nginx接受来自客户端的Http请求发送给uWSGI，uWSGI处理请求并将关键信息传递给web应用(django，flask等)，应用返回Response经由uWSGI发送给Nginx，Nginx再发送给客户端。 
+
+工作原理：
+1. 一般来说，客户端发起的http/https请求首先到达了我们的Web服务器（在这里我们使用Nginx作为我们的服务器）。 
+2. Web服务器收到请求后，对请求进行解析处理（一般来说如果是静态请求，直接返回静态页面（纯HTML页面）），然后将请求发送给uWSGI。 
+3. uWSGI对来自Nginx的请求进行处理，将处理后的结果发送给Web应用框架（在这里我们使用Django）。 
+4. Web应用框架收到请求之后，Web应用对请求进行处理（例如，Django通过某个函数进行处理），将结果返回给uWSGI。 
+5. uWSGI收到Web应用框架的处理结果后，对该结果进行处理打包，发送给Web服务器。 
+6. Web服务器将收到的结果返回给客户端。
+
+之前在使用Django开发项目的过程中， 直接使用python manage.py runserver 来运行服务器，也没有用到其他两个，就可以直接通过浏览器来访问？那是因为Django自带了wsgiref模块，可以作为wsgi服务器，可以对我们的http请求进行处理，但是性能不好，只能测试的时候用。到了真正部署的时候就要用到uWSGI服务器（Nginx也不是必须的，只是为了性能和安全方面的考虑，也是为了更好地处理静态资源）
 
 # Python
 
