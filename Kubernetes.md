@@ -1,4 +1,13 @@
 
+Kubernetes
+https://kubernetes.io/
+一个容器资源编排解决方案，类似的还有Mesos、Docker Swarm等。简称K8s，是用8代替8个字符“ubernete”而成的缩写。
+Google开源的一个容器编排引擎，它支持自动化部署、大规模可伸缩、应用容器化管理。在生产环境中部署一个应用程序时，通常要部署该应用的多个实例以便对应用请求进行负载均衡。
+
+计算资源管理 cpu和mem资源如何共享且避免争抢-> Federation统一管理多个Kubernetes集群、Namespace\Pod（可理解为实例块？）\Container ->实体Node
+网络资源管理 跨主机容器网络互通；多租户多服务之间网络隔离；集群边界路由器管理Nginx\HAProxy\Traefik、集群DNS域名服务管理coreDNS  
+存储资源管理 应用配置文件、密钥管理；应用数据持久化存储；不同的应用之间共享数据存储 Volume\CSI
+镜像资源管理 镜像生命周期管理、权限管理、复制管理以及操作审计管理 开源镜像库Docker Registry\VMware Harbor
 
 etcd
 项目地址 https://github.com/etcd-io/etcd
