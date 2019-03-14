@@ -67,8 +67,10 @@ Google开源的一个容器编排引擎，它支持自动化部署、大规模�
     2、配置管理
     3、部署管理
     4、应用的弹性伸缩管理
-    5、日志管理
-    6、监控管理 zabbix\prometheus
+    5、日志管理 Fluentd日志采集+Elaticsearch日志分析+Kibana可视化展示
+       基于大数据的统一日志查询和分析Heapster+Fluentd+Flume+Kafka+Hadoop+Hive+Spark+Zeppelin
+       流式日志实时查询分析方案Heapster+Fluentd+Kafka
+    6、监控管理 Nigios、zabbix->Heapster+InfluxDB+Grafana、prometheus
     7、安全管理
     8、备份管理
     
