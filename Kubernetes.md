@@ -3,10 +3,20 @@ Kubernetes
 https://kubernetes.io/
 一个容器资源编排解决方案，类似的还有Apache Mesos、Docker Swarm等。简称K8s，是用8代替8个字符“ubernete”而成的缩写。
 Google开源的一个容器编排引擎，它支持自动化部署、大规模可伸缩、应用容器化管理。在生产环境中部署一个应用程序时，通常要部署该应用的多个实例以便对应用请求进行负载均衡。
+Master节点-集群控制节点
+   kube-apiserver：提供HTTP REST接口，k8s里所有资源的增删改查操作的唯一入口
+   kube-controller-manager：k8s里所有资源的自动化控制中心
+   kube-scheduler：负责资源调度（Pod调度）的进程
+   etcd服务：保存k8s里所有资源的状态信息
+Node节点-工作负载节点  物理机或虚机
+   kubelet：负责Pod对应的容器创建、启停等任务，同时与Master密切协作（自动注册等）
+   kube-proxy：实现Service的通信与负载均衡机制的重要组件
+   docker Engine：负责本机容器创建和管理工作
+
 
 计算资源管理 cpu和mem资源如何共享且避免争抢-> Federation统一管理多个Kubernetes集群、Namespace\Pod（可理解为实例块？）\Container ->实体Node
             Replication Controller确保任意时间都有指定数量的Pod“副本”在运行
-            Pod 包含一组容器和卷。同一个Pod里的容器共享同一个网络命名空间，可以使用localhost互相通信。Pod是短暂的，不是持续性实体。
+            Pod 包含一组容器和卷。同一个Pod里的容器共享同一个网络命名空间，可以使用localhost互相通信，每个Pod里运行着一个Pause容器，其他容器则为业务容器，这些容器共享Pause容器的网络栈和Volume挂载卷。Pod是短暂的，不是持续性实体。每个Pod分配唯一IP，内部容器共享该IP。
             Label 一个Label是attach到Pod的一对键/值对，用来传递用户定义的属性。
             Node 节点是物理或者虚拟机器，作为Kubernetes worker，通常称为Minion
             Service 是定义一系列Pod以及访问这些Pod的策略的一层抽象。Service通过Label找到Pod组。
