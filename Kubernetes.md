@@ -107,6 +107,12 @@ Node节点-工作负载节点  物理机或虚机
        第二代Service Mesh项目：Istio开源平台
        网络代理组件Sidecar
 
+平台运营管理
+  DevOps管理 敏捷管理（最小化、快速迭代）、持续集成、持续交付、自动化测试，工具：Redmine\OpenLDAP\InfluxDB\Grafana\GitLab\Jenkins
+  日志管理 日志采集、存储、分析EFK
+  监控管理 Heapster+InfluxDB+Grafana、prometheus 告警管理 Alertmanager
+  备份管理 etcd数据（集群自身的服务发现、集群状态和配置信息）、Elasticsearch数据（日志数据）、InfluxDB数据（集群性能数据）
+  安全管理 应用资源的访问权限、Kubernetes系统级安全管理
 
 
 Alpha：是内部测试版,一般不向外部发布,会有很多Bug.一般只有测试人员使用。
